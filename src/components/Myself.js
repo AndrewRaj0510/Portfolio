@@ -15,7 +15,7 @@ export default function Hero() {
         {/* Short Summary */}
         <p className="text-sm md:text-base text-justify text-black dark:text-white">
           I build intelligent, data-driven solutions that bridge analytics and automation,
-          empowering businesses to make smarter, faster decisions. Currently, I'm enhancing my 
+          empowering businesses to make smarter, faster decisions. Currently, I&apos;m enhancing my 
           expertise through advanced studies in Data Science.
         </p>
 
