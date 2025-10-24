@@ -15,7 +15,7 @@ export default function Navbar() {
   }, [darkMode])
 
   return (
-    <nav className="flex justify-between items-center px-6 py-3 bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-all duration-300">
+    <nav className="fixed top-0 left-0 right-0 flex justify-between items-center px-6 py-3 bg-white dark:bg-gray-900 shadow-md z-50 transition-all duration-300">
       
       {/* LEFT: Profile + Name */}
       <div className="flex items-center space-x-3">
