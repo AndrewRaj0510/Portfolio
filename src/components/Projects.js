@@ -7,11 +7,11 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "Serverless Todo App",
+      title: "Portfolio Website",
       description:
-        "A full-stack serverless todo app built on AWS, showcasing a comprehensive DevOps implementation with Terraform, GitHub Actions CI/CD, and a modern serverless architecture.",
-      image: "/serverless-todo.jpg",
-      github: "",
+        "A modern, responsive portfolio built with Next.js and Tailwind CSS, showcasing my experience, skills, and projects. Features dark/light mode, interactive timelines, smooth UI animations and deployed seamlessly on Vercel ensuring global performance abd CI/CD integration.",
+      image: "/projects/portfolio.png",
+      github: "https://github.com/AndrewRaj0510/Portfolio",
     },
     {
       title: "AI Meme Generator",
@@ -92,7 +92,7 @@ export default function Projects() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1 border px-3 py-1 text-xs font-medium border-transparent bg-secondary text-secondary-foreground rounded-full hover:bg-secondary/80 transition-all"
+                className="inline-flex items-center justify-center gap-1 border px-3 py-1 text-xs font-medium light:text-black dark:text-white border-transparent bg-secondary text-secondary-foreground rounded-full hover:bg-secondary/80 transition-all"
               >
                 GitHub
               </a>
