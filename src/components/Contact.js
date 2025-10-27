@@ -14,7 +14,7 @@ export default function Contact() {
               Connect With Me
             </h2>
             <p className="text-muted-foreground leading-relaxed text-base text-black dark:text-white">
-              Have a project in mind or a question? Reach out and let's turn your ideas into reality.
+              Have a project in mind or a question? Reach out and let&apos;s turn your ideas into reality.
             </p>
 
             <div className="space-y-5 text-foreground text-black dark:text-white">
