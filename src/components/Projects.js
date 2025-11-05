@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
 
 export default function Projects() {
   const [showAll, setShowAll] = useState(false);
@@ -17,15 +18,15 @@ export default function Projects() {
       title: "AI Meme Generator",
       description:
         "An AI-powered meme generator using OpenAI API to generate creative captions and images for trending social content.",
-      image: "/ai-meme-generator.jpg",
+      image: "/ai-meme-generator.jpeg",
       github: "https://github.com/yourgithub/meme-generator",
     },
     {
-      title: "Data Pipeline Automation",
+      title: "Automated Image Generation",
       description:
-        "An automated ETL pipeline built with Informatica Cloud and AWS Glue, designed to transform and process large-scale datasets efficiently.",
-      image: "/data-pipeline.jpg",
-      github: "https://github.com/yourgithub/data-pipeline",
+        "Fully automated image-generation workflow that auto-posts and markets the business on social media. Integrated with Web APIs(Google, Meta, X) into the automation pipeline to enable seamless multiplatform campaign execution and data synchronization.",
+      image: "/projects/ImgGen.jpeg",
+      github: "https://github.com/AndrewRaj0510/Automated-Image-Generation",
     },
     {
       title: "Portfolio Website",
@@ -94,6 +95,7 @@ export default function Projects() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1 border px-3 py-1 text-xs font-medium light:text-black dark:text-white border-transparent bg-secondary text-secondary-foreground rounded-full hover:bg-secondary/80 transition-all"
               >
+                <FaGithub className="w-4 h-4" />
                 GitHub
               </a>
             </div>

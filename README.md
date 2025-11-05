@@ -1,33 +1,20 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Developed a personal portfolio website using Next.js and Tailwind CSS, featuring a responsive, modern, and performance-optimized design. The site showcases my professional experience, education, and projects with dynamic components, clean animations, and dark/light mode support. Integrated smooth navigation, interactive timelines, and reusable UI elements to ensure scalability and maintainability.
 
-## Getting Started
+## Key Highlights:
 
-First, run the development server:
+Built with Next.js (App Router) for fast server-side rendering and optimized routing.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Styled with Tailwind CSS for flexible, utility-first design customization.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deployed seamlessly on Vercel, ensuring global performance and CI/CD integration.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Fully responsive layout with modern UI/UX and accessibility considerations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Modular component structure allowing easy updates and scalability.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<p align="center">
+  <img src="/projects/portfolio.png" alt="Portfolio Screenshot" width="800"/>
+</p>
 
 ## Deploy on Vercel
 
