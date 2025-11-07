@@ -13,7 +13,7 @@ Fully responsive layout with modern UI/UX and accessibility considerations.
 Modular component structure allowing easy updates and scalability.
 
 <p align="center">
-  <img src="/projects/portfolio.png" alt="Portfolio Screenshot" width="800"/>
+  <img src="https://github.com/AndrewRaj0510/Portfolio/blob/main/public/projects/portfolio.png" alt="Portfolio Screenshot" width="800"/>
 </p>
 
 ## Deploy on Vercel
