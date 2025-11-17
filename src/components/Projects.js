@@ -15,11 +15,11 @@ export default function Projects() {
       github: "https://github.com/AndrewRaj0510/Portfolio",
     },
     {
-      title: "AI Meme Generator",
+      title: "Natural Language Data Visualizer",
       description:
-        "An AI-powered meme generator using OpenAI API to generate creative captions and images for trending social content.",
-      image: "/ai-meme-generator.jpeg",
-      github: "https://github.com/yourgithub/meme-generator",
+        "A streamlit app integrated with a LLM that allows user to interact with datasets using natural language prompts. The app will clean and preprocess the dataset automatically or manually if needed and create meaningful visualizations based on the user prompt all without writing a single line of code.",
+      image: "/projects/NLDV.png",
+      github: "https://github.com/AndrewRaj0510/Natural_Language_Data_Visualizer",
     },
     {
       title: "Automated Image Generation",
@@ -93,9 +93,9 @@ export default function Projects() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1 border px-3 py-1 text-xs font-medium light:text-black dark:text-white border-transparent bg-secondary text-secondary-foreground rounded-full hover:bg-secondary/80 transition-all"
+                className="inline-flex items-center justify-center gap-2 border px-3 py-1 text-xs font-medium text-black dark:text-white border-transparent bg-secondary rounded-full hover:bg-secondary/80 transition-all"
               >
-                <FaGithub className="w-4 h-4" />
+                <FaGithub className="w-4 h-4 text-black dark:text-white" />
                 GitHub
               </a>
             </div>
