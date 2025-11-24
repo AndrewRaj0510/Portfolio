@@ -22,18 +22,18 @@ export default function Projects() {
       github: "https://github.com/AndrewRaj0510/Natural_Language_Data_Visualizer",
     },
     {
+      title: "Code Review Assistant",
+      description:
+        "A modern full stack web application that analyzes and reviews code using LLMs, with a sleek UI built using Next.js and Tailwind CSS. The system provides real time code review, formatting, and suggestions to help developers write cleaner and more efficient code.",
+      image: "/projects/CRA.png",
+      github: "https://github.com/AndrewRaj0510/Code_Review_Assistant",
+    },
+    {
       title: "Automated Image Generation",
       description:
         "Fully automated image-generation workflow that auto-posts and markets the business on social media. Integrated with Web APIs(Google, Meta, X) into the automation pipeline to enable seamless multiplatform campaign execution and data synchronization.",
       image: "/projects/ImgGen.jpeg",
       github: "https://github.com/AndrewRaj0510/Automated-Image-Generation",
-    },
-    {
-      title: "Portfolio Website",
-      description:
-        "A responsive portfolio website built with Next.js and Tailwind CSS, showcasing projects, skills, and contact form integration.",
-      image: "/portfolio.jpg",
-      github: "https://github.com/yourgithub/portfolio",
     },
     {
       title: "Chatbot Automation",
@@ -93,10 +93,12 @@ export default function Projects() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border px-3 py-1 text-xs font-medium text-black dark:text-white border-transparent bg-secondary rounded-full hover:bg-secondary/80 transition-all"
+                className="inline-flex items-center justify-center gap-2 border px-3 py-1 text-xs font-medium text-black dark:text-white border-transparent bg-secondary rounded-full hover:bg-secondary/80 transition-all transform hover:scale-105 duration-300 ease-out"
               >
-                <FaGithub className="w-4 h-4 text-black dark:text-white" />
-                GitHub
+                <span className="p-1.5 rounded-md bg-white dark:bg-black flex items-center justify-center">
+                  <FaGithub className="w-4 h-4 text-black dark:text-white" />
+                </span>
+              GitHub
               </a>
             </div>
           </div>
