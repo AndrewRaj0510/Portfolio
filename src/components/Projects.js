@@ -15,6 +15,20 @@ export default function Projects() {
       github: "https://github.com/AndrewRaj0510/Portfolio",
     },
     {
+      title: "Code Review Assistant",
+      description:
+        "A modern full stack web application that analyzes and reviews code using LLMs, with a sleek UI built using Next.js and Tailwind CSS. The system provides real time code review, formatting, and suggestions to help developers write cleaner and more efficient code.",
+      image: "/projects/CRA.png",
+      github: "https://github.com/AndrewRaj0510/Code_Review_Assistant",
+    },
+        {
+      title: "Healthcare Information Chatbot",
+      description:
+        "A local, privacy-preserving healthcare information chatbot built using Retrieval-Augmented Generation (RAG) with Mistral 7B (LM Studio). It provides educational medical information, suggests possible conditions without confirming diagnoses, and enforces strong safety guardrails with a FastAPI backend and Gradio UI.",
+      image: "/projects/Healthcare Assistant.png",
+      github: "https://github.com/AndrewRaj0510/Healthcare_Chatbot",
+    },
+    {
       title: "Natural Language Data Visualizer",
       description:
         "A streamlit app integrated with a LLM that allows user to interact with datasets using natural language prompts. The app will clean and preprocess the dataset automatically or manually if needed and create meaningful visualizations based on the user prompt all without writing a single line of code.",
@@ -22,25 +36,11 @@ export default function Projects() {
       github: "https://github.com/AndrewRaj0510/Natural_Language_Data_Visualizer",
     },
     {
-      title: "Code Review Assistant",
-      description:
-        "A modern full stack web application that analyzes and reviews code using LLMs, with a sleek UI built using Next.js and Tailwind CSS. The system provides real time code review, formatting, and suggestions to help developers write cleaner and more efficient code.",
-      image: "/projects/CRA.png",
-      github: "https://github.com/AndrewRaj0510/Code_Review_Assistant",
-    },
-    {
       title: "Automated Image Generation",
       description:
         "Fully automated image-generation workflow that auto-posts and markets the business on social media. Integrated with Web APIs(Google, Meta, X) into the automation pipeline to enable seamless multiplatform campaign execution and data synchronization.",
       image: "/projects/ImgGen.jpeg",
       github: "https://github.com/AndrewRaj0510/Automated-Image-Generation",
-    },
-    {
-      title: "Chatbot Automation",
-      description:
-        "A conversational AI chatbot integrated with APIs and NLP for automated customer support and workflow assistance.",
-      image: "/chatbot.jpg",
-      github: "https://github.com/yourgithub/chatbot",
     },
     {
       title: "Predictive Maintenance ML",
@@ -93,12 +93,10 @@ export default function Projects() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border px-3 py-1 text-xs font-medium text-black dark:text-white border-transparent bg-secondary rounded-full hover:bg-secondary/80 transition-all transform hover:scale-105 duration-300 ease-out"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black dark:border-white bg-white dark:bg-black text-black dark:text-white transition-transform duration-300 ease-out hover:scale-105"
               >
-                <span className="p-1.5 rounded-md bg-white dark:bg-black flex items-center justify-center">
-                  <FaGithub className="w-4 h-4 text-black dark:text-white" />
-                </span>
-              GitHub
+              <FaGithub className="w-5 h-5" />
+                GitHub
               </a>
             </div>
           </div>
