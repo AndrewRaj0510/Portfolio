@@ -7,7 +7,7 @@ import { loadFull } from "tsparticles";
 
 export default function AIBackground() {
   const [init, setInit] = useState(false);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -17,18 +17,20 @@ export default function AIBackground() {
 
   if (!init) return null;
 
-  const particleColors =
-    theme === "dark"
-      ? [
-          "rgba(255,255,255,0.7)",
-          "rgba(211,211,211,0.6)",
-          "rgba(169,169,169,0.5)",
-        ]
-      : [
-          "rgba(0,0,0,0.7)",
-          "rgba(64,64,64,0.6)",
-          "rgba(192,192,192,0.5)",
-        ];
+  // Default = light, dark only when toggled
+  const isDarkMode = resolvedTheme === "dark";
+
+  const particleColors = isDarkMode
+    ? [
+        "rgba(255,255,255,0.7)",
+        "rgba(211,211,211,0.6)",
+        "rgba(169,169,169,0.5)",
+      ]
+    : [
+        "rgba(0,0,0,0.7)",
+        "rgba(64,64,64,0.6)",
+        "rgba(192,192,192,0.5)",
+      ];
 
   const particlesOptions = {
     background: {
@@ -36,31 +38,71 @@ export default function AIBackground() {
         value: "transparent",
       },
     },
+
     fpsLimit: 60,
+
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true, // moveParticlesOnHover
+          mode: "repulse",
+        },
+        resize: true,
+      },
+      modes: {
+        repulse: {
+          distance: 150, // particleHoverFactor ≈ 1.5
+          duration: 0.4,
+        },
+      },
+    },
+
     particles: {
+      number: {
+        value: 500, // particleCount
+        density: {
+          enable: true,
+          area: 900,
+        },
+      },
+
       color: {
         value: particleColors,
       },
+
       opacity: {
         value: 0.7,
       },
+
       size: {
-        value: { min: 2, max: 5 },
+        value: { min: 1, max: 5 },
+        random: {
+          enable: true,
+          minimumValue: 0.6, // sizeRandomness ≈ 1.6
+        },
       },
+
+      rotate: {
+        enable: true,
+        direction: "counter-clockwise", // anti-clockwise rotation
+        animation: {
+          enable: true,
+          speed: 4,
+        },
+      },
+
       move: {
         enable: true,
-        speed: 2,
+        speed: 0.05, // speed
         direction: "none",
-        random: false,
+        random: true, // particleSpread feel
         straight: false,
         outModes: {
           default: "out",
         },
       },
-      number: {
-        value: 80,
-      },
     },
+
     detectRetina: true,
   };
 
