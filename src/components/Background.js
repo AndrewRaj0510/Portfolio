@@ -20,31 +20,53 @@ export default function AIBackground() {
   const particleColors =
     theme === "dark"
       ? [
-          "rgba(255,255,255,0.15)",
-          "rgba(220,220,220,0.12)",
-          "rgba(180,180,180,0.10)",
+          "rgba(255,255,255,0.7)",
+          "rgba(211,211,211,0.6)",
+          "rgba(169,169,169,0.5)",
         ]
       : [
-          "rgba(0,0,0,0.18)",
-          "rgba(31,31,31,0.14)",
-          "rgba(58,58,58,0.12)",
+          "rgba(0,0,0,0.7)",
+          "rgba(64,64,64,0.6)",
+          "rgba(192,192,192,0.5)",
         ];
+
+  const particlesOptions = {
+    background: {
+      color: {
+        value: "transparent",
+      },
+    },
+    fpsLimit: 60,
+    particles: {
+      color: {
+        value: particleColors,
+      },
+      opacity: {
+        value: 0.7,
+      },
+      size: {
+        value: { min: 2, max: 5 },
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "none",
+        random: false,
+        straight: false,
+        outModes: {
+          default: "out",
+        },
+      },
+      number: {
+        value: 80,
+      },
+    },
+    detectRetina: true,
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full h-full -z-10">
-      <Particles
-        particleCount={530}
-        particleSpread={15}
-        speed={0.05}
-        particleColors={particleColors}
-        moveParticlesOnHover
-        particleHoverFactor={1.5}
-        alphaParticles={true}
-        particleBaseSize={130}
-        sizeRandomness={1.6}
-        cameraDistance={15}
-        disableRotation={false}
-      />
+      <Particles id="tsparticles" options={particlesOptions} />
     </div>
   );
 }
