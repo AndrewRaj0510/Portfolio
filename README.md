@@ -14,7 +14,7 @@ Modular component structure allowing easy updates and scalability.
 
 ## Deployed on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy the web application is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
 <p align="center">
   <img src="https://github.com/AndrewRaj0510/Portfolio/blob/main/public/projects/portfolio.png" alt="Portfolio Screenshot" width="800"/>

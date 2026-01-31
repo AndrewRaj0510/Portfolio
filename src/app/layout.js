@@ -1,5 +1,3 @@
-'use client'
-
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -18,16 +16,6 @@ export const metadata = {
   title: "Andrew Isaac Raj G | Portfolio",
   description: "Portfolio of Andrew Isaac Raj G — Data Analyst & AI Automation Enthusiast",
 };
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
-  );
-}
 
 export default function RootLayout({ children }) {
   return (
