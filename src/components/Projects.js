@@ -21,7 +21,14 @@ export default function Projects() {
       image: "/projects/CRA.png",
       github: "https://github.com/AndrewRaj0510/Code_Review_Assistant",
     },
-        {
+    {
+      title: "AI Travel Planner",
+      description:
+        "In Development",
+      image: "/predictive-maintenance.jpg",
+      github: "https://github.com/yourgithub/maintenance-ml",
+    },
+    {
       title: "Healthcare Information Chatbot",
       description:
         "A local, privacy-preserving healthcare information chatbot built using Retrieval-Augmented Generation (RAG) with Mistral 7B (LM Studio). It provides educational medical information, suggests possible conditions without confirming diagnoses, and enforces strong safety guardrails with a FastAPI backend and Gradio UI.",
@@ -41,13 +48,6 @@ export default function Projects() {
         "Fully automated image-generation workflow that auto-posts and markets the business on social media. Integrated with Web APIs(Google, Meta, X) into the automation pipeline to enable seamless multiplatform campaign execution and data synchronization.",
       image: "/projects/ImgGen.jpeg",
       github: "https://github.com/AndrewRaj0510/Automated-Image-Generation",
-    },
-    {
-      title: "Predictive Maintenance ML",
-      description:
-        "A machine learning model predicting equipment failures using sensor data and statistical anomaly detection.",
-      image: "/predictive-maintenance.jpg",
-      github: "https://github.com/yourgithub/maintenance-ml",
     },
   ];
 
@@ -93,9 +93,9 @@ export default function Projects() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black dark:border-white bg-white dark:bg-black text-black dark:text-white transition-transform duration-300 ease-out hover:scale-105"
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black dark:border-white bg-black dark:bg-white text-white dark:text-black transition-transform duration-300 ease-out hover:scale-105"
               >
-              <FaGithub className="w-5 h-5" />
+              <FaGithub className="w-4 h-4" />
                 GitHub
               </a>
             </div>
