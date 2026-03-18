@@ -84,7 +84,7 @@ const About = () => {
         </p>
       </div>
       {/* === Experience Timeline === */}
-      <div className="max-w-4xl mx-auto mb-10 px-8 md:px-20 pt--1">
+      <div id="experience" className="max-w-4xl mx-auto mb-10 px-8 md:px-20 pt--1 scroll-mt-24">
         <h3 className="text-4xl font-semibold mb-10 text-black dark:text-white">
           Experience
         </h3>
@@ -126,7 +126,7 @@ const About = () => {
         </div>
       </div>
       {/* === Education Timeline === */}
-      <div className="max-w-4xl mx-auto mb-10 px-8 md:px-20 pt--1">
+      <div id="education" className="max-w-4xl mx-auto mb-10 px-8 md:px-20 pt--1 scroll-mt-24">
         <h3 className="text-4xl font-semibold mb-10 text-black dark:text-white">
           Education
         </h3>

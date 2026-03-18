@@ -4,87 +4,49 @@ import {SiMysql,SiTeradata,SiOracle,SiInformatica,SiNextdotjs,SiTableau,SiJira,S
 import { BsGraphUpArrow } from "react-icons/bs";
 import Image from "next/image";
 
+const SkillIcon = ({ src, alt }) => (
+  <Image
+    src={src}
+    alt={alt}
+    width={32}
+    height={32}
+    className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+  />
+);
+
 const skills = [
-  { name: "Python", icon: (<Image
-                          src="/icons/python.png"
-                          alt="python"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Python", icon: <SkillIcon src="/icons/python.png" alt="python" /> },
   { name: "R", icon: <SiR className="text-blue-400" /> },
-  { name: "AWS", icon: (<Image
-                          src="/icons/aws.png"
-                          alt="aws"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
-  { name: "GCP", icon: (<Image
-                          src="/icons/gcp.png"
-                          alt="gcp"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "AWS", icon: <SkillIcon src="/icons/aws.png" alt="aws" /> },
+  { name: "GCP", icon: <SkillIcon src="/icons/gcp.png" alt="gcp" /> },
   { name: "Machine Learning", icon: <FaBrain className="text-pink-500" /> },
-  { name: "Big Data", icon: (<Image
-                          src="/icons/bigdata.png"
-                          alt="bigdata"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
-  { name: "LLMs", icon: (<Image
-                          src="/icons/llm.jpg"
-                          alt="llm"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Big Data", icon: <SkillIcon src="/icons/bigdata.png" alt="bigdata" /> },
+  { name: "LLMs", icon: <SkillIcon src="/icons/llm.jpg" alt="llm" /> },
   { name: "MySQL", icon: <SiMysql className="text-blue-400" /> },
   { name: "Teradata", icon: <SiTeradata className="text-red-400" /> },
   { name: "Oracle PL/SQL", icon: <SiOracle className="text-orange-400" /> },
   { name: "AI Automation", icon: <FaRobot className="text-green-400" /> },
-  { name: "Web APIs", icon: (<Image
-                          src="/icons/api.png"
-                          alt="api"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
-  { name: "n8n", icon: (<Image
-                          src="/icons/n8n.png"
-                          alt="n8n"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Web APIs", icon: <SkillIcon src="/icons/api.png" alt="api" /> },
+  { name: "n8n", icon: <SkillIcon src="/icons/n8n.png" alt="n8n" /> },
   { name: "Next.js", icon: <SiNextdotjs className="text-black dark:text-white" /> },
   { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
-  { name: "Power BI", icon: (<Image
-                          src="/icons/powerbi.jpeg"
-                          alt="powerbi"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Power BI", icon: <SkillIcon src="/icons/powerbi.jpeg" alt="powerbi" /> },
   { name: "Tableau", icon: <SiTableau className="text-blue-400" /> },
-  { name: "Excel", icon: (<Image
-                          src="/icons/excel.png"
-                          alt="excel"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Excel", icon: <SkillIcon src="/icons/excel.png" alt="excel" /> },
   { name: "Data Analysis", icon: <BsGraphUpArrow className="text-blue-500" /> },
-  { name: "Data Integrity", icon: (<Image
-                          src="/icons/data_integrity.png"
-                          alt="data_integrity"
-                          className="w-10 h10 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Data Integrity", icon: <SkillIcon src="/icons/data_integrity.png" alt="data_integrity" /> },
   { name: "Informatica", icon: <SiInformatica className="text-red-500" /> },
-  { name: "Quality Assurance", icon: (<Image
-                          src="/icons/qa.png"
-                          alt="qa"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Quality Assurance", icon: <SkillIcon src="/icons/qa.png" alt="qa" /> },
   { name: "Confluence", icon: <SiConfluence className="text-blue-400" /> },
   { name: "Jira", icon: <SiJira className="text-blue-500" /> },
   { name: "Git", icon: <FaGitAlt className="text-orange-600" /> },
-  { name: "Hadoop", icon: (<Image
-                          src="/icons/hadoop.png"
-                          alt="hadoop"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "Hadoop", icon: <SkillIcon src="/icons/hadoop.png" alt="hadoop" /> },
   { name: "MapReduce", icon: <FaProjectDiagram className="text-red-400" /> },
   { name: "Business Strategy", icon: <FaChartBar className="text-indigo-400" /> },
-  { name: "SEO Optimization", icon: (<Image
-                          src="/icons/seo.png"
-                          alt="seo"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
-  { name: "Functional Testing", icon: (<Image
-                          src="/icons/functional.jpeg"
-                          alt="functional"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
-  { name: "Manual Testing", icon: (<Image
-                          src="/icons/manual.jpeg"
-                          alt="manual"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
-  { name: "PySpark", icon: (<Image
-                          src="/icons/spark.jpeg"
-                          alt="spark"
-                          className="w-8 h-8 object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"/>), },
+  { name: "SEO Optimization", icon: <SkillIcon src="/icons/seo.png" alt="seo" /> },
+  { name: "Functional Testing", icon: <SkillIcon src="/icons/functional.jpeg" alt="functional" /> },
+  { name: "Manual Testing", icon: <SkillIcon src="/icons/manual.jpeg" alt="manual" /> },
+  { name: "PySpark", icon: <SkillIcon src="/icons/spark.jpeg" alt="spark" /> },
 ];
 
 const Skills = () => {
@@ -93,7 +55,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-20 px-8 md:px-20 bg-gradient-to-b transition-all duration-500"
+      className="py-20 px-8 md:px-20 bg-gradient-to-b transition-all duration-500 scroll-mt-24"
     >
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-black dark:text-white">

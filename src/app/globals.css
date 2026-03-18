@@ -3,15 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 html,
@@ -26,7 +19,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 64px; /* Adjust this value based on your navbar height */
+  padding-top: 80px; /* Space for floating navbar */
 }
 
 * {
@@ -40,10 +33,8 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+html {
+  color-scheme: dark;
 }
 
 #tsparticles {
@@ -56,4 +47,248 @@ a {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* === CardNav Styles === */
+.card-nav-container {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 860px;
+  z-index: 99;
+  box-sizing: border-box;
+}
+
+.card-nav {
+  display: block;
+  height: 60px;
+  padding: 0;
+  background-color: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  will-change: height;
+}
+
+.card-nav-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.6rem 0.5rem 1.1rem;
+  z-index: 2;
+}
+
+/* Hamburger */
+.hamburger-menu {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 6px;
+  padding: 0 0.25rem;
+}
+
+.hamburger-menu:hover .hamburger-line {
+  opacity: 0.6;
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 2px;
+  background-color: #d1d5db;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: 50% 50%;
+}
+
+.hamburger-menu.open .hamburger-line:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.hamburger-menu.open .hamburger-line:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* Logo / Profile Center */
+.logo-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Expanded Content */
+.card-nav-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  padding: 0.5rem;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-nav.open .card-nav-content {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Nav Cards */
+:root {
+  --card-home: #1e293b;
+  --card-about: #14332a;
+  --card-projects: #422006;
+  --card-contact: #3b1a2e;
+  --card-text: #e5e7eb;
+}
+
+.nav-card {
+  flex: 1 1 0;
+  min-width: 0;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  gap: 8px;
+  user-select: none;
+}
+
+.nav-card-label {
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: -0.3px;
+}
+
+.nav-card-links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-card-link {
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 2px 0;
+  font-family: inherit;
+  text-align: left;
+}
+
+.nav-card-link:hover {
+  opacity: 0.65;
+}
+
+.nav-card-link-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .card-nav-container {
+    width: 92%;
+    top: 0.75rem;
+  }
+
+  .card-nav-top {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .card-nav-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 0.5rem;
+  }
+
+  .nav-card {
+    min-height: 56px;
+    flex: none;
+    padding: 12px 14px;
+  }
+
+  .nav-card-label {
+    font-size: 1rem;
+  }
+
+  .nav-card-link {
+    font-size: 0.8125rem;
+  }
+
+  .logo-container span {
+    display: none;
+  }
+}
+
+/* === Loading Screen === */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-scan-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.loading-scan-bg canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-text {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 40px rgba(255, 255, 255, 0.15);
+  letter-spacing: -0.02em;
+}
+
+.welcome-char {
+  opacity: 0;
+}
+
+/* === Prism Background === */
+.prism-bg-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
 }
