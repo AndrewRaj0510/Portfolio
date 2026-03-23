@@ -1,4 +1,4 @@
-Developed a personal portfolio website using Next.js and Tailwind CSS, featuring a responsive, modern, and performance-optimized design. The site showcases my professional experience, education, and projects with dynamic components, clean animations, and dark/light mode support. Integrated smooth navigation, interactive timelines, and reusable UI elements to ensure scalability and maintainability.
+Developed a personal portfolio website using Next.js and Tailwind CSS, featuring a responsive, modern, and performance-optimized design. The site showcases my professional experience, education, and projects with dynamic components, clean animations. Integrated smooth navigation, interactive timelines, and reusable UI elements to ensure scalability and maintainability.
 
 ## Key Highlights:
 
@@ -14,4 +14,9 @@ Modular component structure allowing easy updates and scalability.
 
 ## Deployed on Vercel
 
-The web application was easily deployed on Vercel.
+The web application was deployed on Vercel.
+Website link: https://portfolio-andrewraj0510.vercel.app/
+
+## Screenshot
+
+![Portfolio Screenshot](public/projects/portfolio.png)

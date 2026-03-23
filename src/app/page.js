@@ -6,9 +6,9 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Myself'
 import About from '@/components/About'
 import Skills from '@/components/Skills'
-import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import ScrollReveal from '@/components/ScrollReveal'
 
 // Dynamic imports for WebGL components (no SSR)
 const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), { ssr: false })
@@ -22,14 +22,28 @@ export default function Home() {
       <PrismBackground />
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <Navbar />
-      <section id="home" className="...">
-        <Hero />
-      </section>
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
+
+      <ScrollReveal variant="fadeDown" duration={900}>
+        <section id="home">
+          <Hero />
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal variant="fadeUp" duration={800}>
+        <About />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fadeUp" duration={800}>
+        <Skills />
+      </ScrollReveal>
+
+      <ScrollReveal variant="zoomIn" duration={800}>
+        <Contact />
+      </ScrollReveal>
+
+      <ScrollReveal variant="blur" duration={600}>
+        <Footer />
+      </ScrollReveal>
     </main>
   )
 }

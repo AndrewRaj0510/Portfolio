@@ -2,10 +2,28 @@
 
 import React from "react";
 import { ArrowUpRight } from 'lucide-react'
-import { Download } from "lucide-react";
+import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const About = () => {
   const experiences = [
+    {
+      title: "AI Engineer Intern",
+      company: "Techies Infotech FZCO",
+      duration: "Feb 2026 – Aug 2026",
+      role: "Role: AI Engineer Intern",
+      description:
+        "Tools/Technologies: n8n, Python, Web APIs, Ollama (LLMs), PostgreSQL, Supabase",
+      highlights: [
+        "Developed AI-powered chatbot POCs using n8n, enhancing website interaction and automating user query handling.",
+        "Built web scraping/crawling pipelines using Selenium and Playwright to extract data from internal sources and platforms like flight tracking systems, enabling weekly flight analysis insights.",
+        "Designed and implemented an HR Insights Assistant that converts natural language queries into actionable insights using LLMs, improving employee performance analysis.",
+        "Integrated LLMs via Ollama to power intelligent workflows for flight trend analysis and HR reporting systems.",
+        "Developed backend pipelines using PostgreSQL and Supabase, managing structured data for analytics and AI-driven applications.",
+        "Implemented vector databases to store and retrieve employee reviews and organizational data, enabling RAG-based insights generation.",
+        "Utilized APIs and automation workflows to connect data sources and deliver scalable AI-driven solutions.",
+      ],
+    },
     {
       title: "Data and Automation Intern",
       company: "Long Tail Ventures, Dubai, UAE",
@@ -57,15 +75,25 @@ const About = () => {
       title: "Middlesex University Dubai",
       company: "MS Data Science",
       duration: "2025 – Present",
-      description:
-        "",
+      description: "",
     },
     {
       title: "Kamaraj College of Engineering and Technology",
       company: "B.E Computer Science and Engineering",
       duration: "2019 – 2022",
-      description:
-        "CGPA: 8.21"
+      description: "CGPA: 8.21",
+    },
+    {
+      title: "Adhyapana School CBSE",
+      company: "Higher Secondary Education",
+      duration: "2016 – 2018",
+      description: "CGPA: 8.0",
+    },
+    {
+      title: "Adhyapana School CBSE",
+      company: "Senior Secondary Education",
+      duration: "2014 – 2016",
+      description: "CGPA: 9.0",
     },
   ];
 
@@ -83,89 +111,119 @@ const About = () => {
           encourages me to flourish.
         </p>
       </div>
-      {/* === Experience Timeline === */}
-      <div id="experience" className="max-w-4xl mx-auto mb-10 px-8 md:px-20 pt--1 scroll-mt-24">
-        <h3 className="text-4xl font-semibold mb-10 text-black dark:text-white">
+      {/* === Experience Timeline (Alternating) === */}
+      <div id="experience" className="max-w-5xl mx-auto mb-10 px-4 md:px-8 scroll-mt-24">
+        <h3 className="text-4xl font-semibold mb-14 text-center text-black dark:text-white">
           Experience
         </h3>
-        {/* === Vertical Timeline === */}
-        <div className="relative border-l border-gray-300 dark:border-gray-700 ml-6">
-          {experiences.map((exp, index) => (
-            <div key={index} className="relative pl-10 pb-12">
-              {/* Timeline Dot */}
-              <span className="absolute -left-[7px] top-4 w-3 h-3 bg-gray-800 dark:bg-gray-100 rounded-full"></span>
-              {/* === Duration (Left side of timeline) === */}
-              <span className="absolute -left-44 top-3 w-36 text-right text-sm text-gray-700 dark:text-gray-300">
-                {exp.duration}
-              </span>
-              {/* === Main Content === */}
-              <div className="space-y-2">
-                <h4 className="text-lg font-semibold text-black dark:text-white leading-snug">
-                  {exp.title}
-                </h4>
-                <h5 className="text-base font-bold text-black dark:text-white leading-snug">
-                  {exp.company}
-                </h5>
-                <p className="text-black dark:text-white leading-relaxed">
-                  {exp.role}
-                </p>
-                <p className="text-black dark:text-white leading-relaxed">
-                  {exp.description}
-                </p>
-              {/* === Highlights === */}
-              <ul className="list-disc list-outside pl-6 text-black dark:text-white space-y-1">
-                {exp.highlights.map((item, idx) => (
-                  <li key={idx} className="text-justify leading-relaxed">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+        {/* === Center-line Timeline === */}
+        <div className="relative">
+          {/* Center vertical line */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700 hidden md:block" />
+          {/* Mobile left line */}
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700 md:hidden" />
+
+          {experiences.map((exp, index) => {
+            const isLeft = index % 2 === 0;
+            return (
+              <div key={index} className="relative mb-12">
+                {/* Timeline Dot (center on desktop, left on mobile) */}
+                <span className="absolute left-[13px] md:left-1/2 md:-translate-x-1/2 top-6 w-3 h-3 bg-gray-800 dark:bg-gray-100 rounded-full z-10" />
+
+                {/* Content card */}
+                <ScrollReveal
+                  variant={isLeft ? "fadeRight" : "fadeLeft"}
+                  duration={700}
+                  delay={index * 100}
+                >
+                  <div className={`ml-10 md:ml-0 md:w-[45%] ${isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+                    <span className="inline-block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                      {exp.duration}
+                    </span>
+                    <div className="space-y-2 rounded-xl border border-gray-200 dark:border-gray-700/50 bg-white/5 backdrop-blur-sm p-5">
+                      <h4 className="text-lg font-semibold text-black dark:text-white leading-snug">
+                        {exp.title}
+                      </h4>
+                      <h5 className="text-base font-bold text-black dark:text-white leading-snug">
+                        {exp.company}
+                      </h5>
+                      <p className="text-black dark:text-white leading-relaxed">
+                        {exp.role}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        {exp.description}
+                      </p>
+                      <ul className="list-disc list-outside pl-6 text-black dark:text-white space-y-1">
+                        {exp.highlights.map((item, idx) => (
+                          <li key={idx} className="text-sm text-justify leading-relaxed">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </ScrollReveal>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
-      {/* === Education Timeline === */}
-      <div id="education" className="max-w-4xl mx-auto mb-10 px-8 md:px-20 pt--1 scroll-mt-24">
-        <h3 className="text-4xl font-semibold mb-10 text-black dark:text-white">
+      {/* === Education Timeline (Alternating) === */}
+      <div id="education" className="max-w-5xl mx-auto mb-10 px-4 md:px-8 scroll-mt-24">
+        <h3 className="text-4xl font-semibold mb-14 text-center text-black dark:text-white">
           Education
         </h3>
-        {/* === Vertical Timeline === */}
-        <div className="relative border-l border-gray-300 dark:border-gray-700 ml-6">
-          {education.map((edu, index) => (
-            <div key={index} className="relative pl-10 pb-12">
-              {/* Timeline Dot */}
-              <span className="absolute -left-[7px] top-4 w-3 h-3 bg-gray-800 dark:bg-gray-100 rounded-full"></span>
-              {/* === Duration (Left side of timeline) === */}
-              <span className="absolute -left-44 top-3 w-36 text-right text-sm text-gray-700 dark:text-gray-300">
-                {edu.duration}
-              </span>
-              {/* === Main Content === */}
-              <div className="space-y-2">
-                <h4 className="text-lg font-semibold text-black dark:text-white leading-snug">
-                  {edu.title}
-                </h4>
-                <h5 className="text-base font-medium text-black dark:text-white leading-snug">
-                  {edu.company}
-                </h5>
-                <p className="text-black dark:text-white leading-relaxed">
-                  {edu.description}
-                </p>
+        <div className="relative">
+          {/* Center vertical line */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700 hidden md:block" />
+          {/* Mobile left line */}
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-300 dark:bg-gray-700 md:hidden" />
+
+          {education.map((edu, index) => {
+            const isLeft = index % 2 === 0;
+            return (
+              <div key={index} className="relative mb-12">
+                {/* Timeline Dot */}
+                <span className="absolute left-[13px] md:left-1/2 md:-translate-x-1/2 top-6 w-3 h-3 bg-gray-800 dark:bg-gray-100 rounded-full z-10" />
+
+                <ScrollReveal
+                  variant={isLeft ? "fadeRight" : "fadeLeft"}
+                  duration={700}
+                  delay={index * 100}
+                >
+                  <div className={`ml-10 md:ml-0 md:w-[45%] ${isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+                    <span className="inline-block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                      {edu.duration}
+                    </span>
+                    <div className="space-y-2 rounded-xl border border-gray-200 dark:border-gray-700/50 bg-white/5 backdrop-blur-sm p-5">
+                      <h4 className="text-lg font-semibold text-black dark:text-white leading-snug">
+                        {edu.title}
+                      </h4>
+                      <h5 className="text-base font-bold text-black dark:text-white leading-snug">
+                        {edu.company}
+                      </h5>
+                      {edu.description && (
+                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                          {edu.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </ScrollReveal>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       {/* === Resume Buttons === */}
       <div className="flex justify-center gap-6">
-        <a
-          href="/Andrew_CV.pdf"
-          download
+        <Link
+          href="/projects"
           className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-black text-white dark:bg-white dark:text-black hover:scale-105 hover:shadow-lg"
         >
-          Download Resume
-          <Download className="w-5 h-5" />
-        </a>
+          View Projects
+          <ArrowUpRight size={18} />
+        </Link>
         <a
           href="https://drive.google.com/file/d/1CdrNXftUMnyIqbGCGbyXpuvwm12WSU2L/view?usp=sharing"
           target="_blank"

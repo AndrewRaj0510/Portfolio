@@ -3,11 +3,14 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
+import { useRouter, usePathname } from 'next/navigation'
 import { GoArrowUpRight } from 'react-icons/go'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import { HiOutlineMail } from 'react-icons/hi'
 
 export default function Navbar() {
+  const router = useRouter()
+  const pathname = usePathname()
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const navRef = useRef(null)
@@ -128,7 +131,7 @@ export default function Navbar() {
       bgColor: 'var(--card-home)',
       textColor: 'var(--card-text)',
       links: [
-        { label: 'Go to top', href: '#home' },
+        { label: 'Go to Home', href: '/', isHome: true },
       ],
     },
     {
@@ -246,6 +249,26 @@ export default function Navbar() {
                     )
                   }
 
+                  if (lnk.isHome) {
+                    return (
+                      <button
+                        key={i}
+                        className="nav-card-link"
+                        onClick={() => {
+                          closeMenu()
+                          if (pathname === '/') {
+                            window.scrollTo({ top: 0, behavior: 'smooth' })
+                          } else {
+                            router.push('/')
+                          }
+                        }}
+                      >
+                        <GoArrowUpRight className="nav-card-link-icon" />
+                        {lnk.label}
+                      </button>
+                    )
+                  }
+
                   if (lnk.href === '/projects') {
                     return (
                       <button
@@ -253,7 +276,7 @@ export default function Navbar() {
                         className="nav-card-link"
                         onClick={() => {
                           closeMenu()
-                          alert('Projects page coming soon!')
+                          router.push('/projects')
                         }}
                       >
                         <GoArrowUpRight className="nav-card-link-icon" />
