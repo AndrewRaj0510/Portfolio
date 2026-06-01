@@ -128,23 +128,25 @@ const About = () => {
 
   return (
     <section id="about" className="pt-24 pb-12 px-4 md:px-16">
-      <div className="max-w-3xl mx-auto text-center mb-10">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-black dark:text-white">
-          About Me
-        </h2>
-        <p className="text-black dark:text-white text-justify leading-relaxed">
-          An AI Engineer with a strong foundation in machine learning and data science,
-          focused on designing and shipping production-grade, AI-driven applications, from
-          RAG systems and LLM-powered agents to end-to-end automation pipelines. I combine
-          applied machine learning, statistical analysis, and data engineering with hands-on
-          experience across LLMs, vector databases, and full-stack development to turn complex
-          problems into reliable, scalable solutions. Known for high productivity and efficient
-          delivery, I bring strong communication, teamwork, and adaptability to every project.
-          With 3 years of work experience, I am seeking a role that lets me keep building at
-          the intersection of machine learning, data science, and automation while delivering
-          high-quality, impactful work.
-        </p>
-      </div>
+      <ScrollReveal variant="fadeUp" duration={800}>
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-12 text-black dark:text-white">
+            About Me
+          </h2>
+          <p className="text-black dark:text-white text-justify leading-relaxed">
+            An AI Engineer with a strong foundation in machine learning and data science,
+            focused on designing and shipping production-grade, AI-driven applications, from
+            RAG systems and LLM-powered agents to end-to-end automation pipelines. I combine
+            applied machine learning, statistical analysis, and data engineering with hands-on
+            experience across LLMs, vector databases, and full-stack development to turn complex
+            problems into reliable, scalable solutions. Known for high productivity and efficient
+            delivery, I bring strong communication, teamwork, and adaptability to every project.
+            With 3 years of work experience, I am seeking a role that lets me keep building at
+            the intersection of machine learning, data science, and automation while delivering
+            high-quality, impactful work.
+          </p>
+        </div>
+      </ScrollReveal>
       {/* === Experience Timeline (Alternating) === */}
       <div id="experience" className="max-w-5xl mx-auto mb-10 px-4 md:px-8 scroll-mt-24">
         <h3 className="text-4xl font-semibold mb-14 text-center text-black dark:text-white">

@@ -34,7 +34,7 @@ export default function ScrollReveal({
   variant = 'fadeUp',
   delay = 0,
   duration = 700,
-  threshold = 0.15,
+  threshold = 0,
   className = '',
 }) {
   const ref = useRef(null)
@@ -44,6 +44,12 @@ export default function ScrollReveal({
     const el = ref.current
     if (!el) return
 
+    // Fallback: if IntersectionObserver is unavailable, just show the content.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true)
+      return
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -51,7 +57,10 @@ export default function ScrollReveal({
           observer.unobserve(el)
         }
       },
-      { threshold }
+      // threshold 0 + a small negative bottom margin reveals as soon as the
+      // element's top edge scrolls into view. A percentage threshold would
+      // never fire for elements taller than the viewport.
+      { threshold, rootMargin: '0px 0px -10% 0px' }
     )
 
     observer.observe(el)

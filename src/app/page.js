@@ -29,9 +29,7 @@ export default function Home() {
         </section>
       </ScrollReveal>
 
-      <ScrollReveal variant="fadeUp" duration={800}>
-        <About />
-      </ScrollReveal>
+      <About />
 
       <ScrollReveal variant="fadeUp" duration={800}>
         <Skills />
