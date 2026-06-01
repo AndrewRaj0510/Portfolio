@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="flex flex-col justify-start md:w-1/2 space-y-7">
         {/* Headline */}
         <h1 className="text-3xl md:text-4xl font-extrabold text-justify text-black dark:text-white">
-          AI Engineer | Data Science Graduate Student | Machine Learning, Automation | Building Intelligent Systems
+          AI Engineer | Machine Learning &amp; Data Science Enthusiast | LLMs, RAG &amp; Agentic Systems | Gen AI &amp; Workflow Automation
         </h1>
 
         {/* Short Summary */}

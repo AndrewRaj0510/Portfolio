@@ -12,16 +12,45 @@ const About = () => {
       company: "Techies Infotech FZCO",
       duration: "Feb 2026 – Aug 2026",
       role: "Role: AI Engineer Intern",
-      description:
-        "Tools/Technologies: n8n, Python, Web APIs, Ollama (LLMs), PostgreSQL, Supabase",
+      techCategories: [
+        {
+          label: "Languages & Frameworks",
+          items: "Python, FastAPI, Next.js, React, Express.js, LangChain",
+        },
+        {
+          label: "AI & LLMs",
+          items: "Claude API, OpenAI API, GPT models, Groq, Ollama, RAG",
+        },
+        {
+          label: "LLM Models",
+          items: "Llama, Qwen, gpt-oss, gpt-image-2, OpenAI Whisper",
+        },
+        {
+          label: "Data & Vector Stores",
+          items: "PostgreSQL, Supabase (pgvector), ChromaDB",
+        },
+        {
+          label: "Scraping",
+          items: "Selenium, BeautifulSoup, Playwright, Apify",
+        },
+        {
+          label: "Web APIs",
+          items: "SerpApi, Meta, FlightRadar24",
+        },
+        {
+          label: "Automation & Cloud",
+          items: "n8n, AWS S3",
+        },
+      ],
       highlights: [
-        "Developed AI-powered chatbot POCs using n8n, enhancing website interaction and automating user query handling.",
-        "Built web scraping/crawling pipelines using Selenium and Playwright to extract data from internal sources and platforms like flight tracking systems, enabling weekly flight analysis insights.",
-        "Designed and implemented an HR Insights Assistant that converts natural language queries into actionable insights using LLMs, improving employee performance analysis.",
-        "Integrated LLMs via Ollama to power intelligent workflows for flight trend analysis and HR reporting systems.",
-        "Developed backend pipelines using PostgreSQL and Supabase, managing structured data for analytics and AI-driven applications.",
-        "Implemented vector databases to store and retrieve employee reviews and organizational data, enabling RAG-based insights generation.",
-        "Utilized APIs and automation workflows to connect data sources and deliver scalable AI-driven solutions.",
+        "Delivered and deployed an end-to-end content-automation platform that ingests and LLM-scores 50+ RSS and news feeds, generates LinkedIn and Instagram copy and image prompts with GPT models, and orchestrates n8n rendering and publishing workflows with an approval queue, AWS S3 asset storage, and automated carousel-PDF stitching.",
+        "Built and deployed a browser-based scraping console with Reddit (search.rss) and Upwork (Apify) pipelines exposed through a FastAPI service and Next.js UI, persisting every run to PostgreSQL and uploading XLSX and log artifacts to S3 with a queryable run-history view.",
+        "Designed and deployed an AI flight-intelligence platform that pairs live SerpApi (Google Flights) pricing with FlightRadar24 reliability data scraped via Playwright, using a Groq-hosted LLM to generate booking-recommendation reports and a grounded multi-turn chat, served through a FastAPI backend and Next.js frontend on Supabase with n8n-scheduled scraping.",
+        "Engineered and deployed a hybrid Retrieval-Augmented Generation (RAG) HR-analytics system that classifies query intent and routes natural-language questions across PostgreSQL (LLM text-to-SQL), a ChromaDB vector store, and a knowledge graph, synthesizing evidence-backed answers with a local Ollama LLM via LangChain.",
+        "Developed a proof-of-concept embeddable WhatsApp-style chat widget (React IIFE bundle) backed by an Express API that classifies intent with a GPT model and serves RAG answers via OpenAI embeddings and pgvector on Supabase, with conversational support-ticket, sales-lead, and consultation-booking flows plus production hardening (per-IP rate limiting, CORS allowlisting, and input sanitization).",
+        "Configured and wired backend and frontend API endpoints and integrated them with n8n workflows, ensuring smooth, reliable data flow across the full request-to-publish pipeline.",
+        "Integrated Claude and OpenAI APIs across multiple production FastAPI and Next.js services, building reusable LLM, embedding, and vector-search components alongside n8n automation to deliver scalable, AI-driven applications.",
+        "Beyond these, built custom scripts, scrapers, and fine-tuned models to extract structured data from PDF receipts across multiple eCommerce stores, and transcribed audio files using OpenAI Whisper.",
       ],
     },
     {
@@ -104,11 +133,16 @@ const About = () => {
           About Me
         </h2>
         <p className="text-black dark:text-white text-justify leading-relaxed">
-          An aspiring data scientist and a resourceful analyst known for high productivity and efficient
-          task completion. Excel in communication, teamwork and adaptability, ensuring seamless
-          collaboration and project success. With 2 years of work experience, I am seeking a role which
-          allows me to continue learning and perfecting my skills as I provide high-quality work, and
-          encourages me to flourish.
+          An AI Engineer with a strong foundation in machine learning and data science,
+          focused on designing and shipping production-grade, AI-driven applications, from
+          RAG systems and LLM-powered agents to end-to-end automation pipelines. I combine
+          applied machine learning, statistical analysis, and data engineering with hands-on
+          experience across LLMs, vector databases, and full-stack development to turn complex
+          problems into reliable, scalable solutions. Known for high productivity and efficient
+          delivery, I bring strong communication, teamwork, and adaptability to every project.
+          With 3 years of work experience, I am seeking a role that lets me keep building at
+          the intersection of machine learning, data science, and automation while delivering
+          high-quality, impactful work.
         </p>
       </div>
       {/* === Experience Timeline (Alternating) === */}
@@ -150,9 +184,25 @@ const About = () => {
                       <p className="text-black dark:text-white leading-relaxed">
                         {exp.role}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {exp.description}
-                      </p>
+                      {exp.techCategories ? (
+                        <div className="space-y-1">
+                          {exp.techCategories.map((cat, idx) => (
+                            <p
+                              key={idx}
+                              className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed"
+                            >
+                              <span className="font-semibold text-black dark:text-white">
+                                {cat.label}:
+                              </span>{" "}
+                              {cat.items}
+                            </p>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                          {exp.description}
+                        </p>
+                      )}
                       <ul className="list-disc list-outside pl-6 text-black dark:text-white space-y-1">
                         {exp.highlights.map((item, idx) => (
                           <li key={idx} className="text-sm text-justify leading-relaxed">
