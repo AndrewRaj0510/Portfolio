@@ -97,6 +97,7 @@ function ProjectCard({ item }) {
   const [lightboxSrc, setLightboxSrc] = useState(null)
   const isPrivate = item.visibility === 'private'
   const hasGallery = Array.isArray(item.gallery) && item.gallery.length > 0
+  const singleGallery = hasGallery && item.gallery.length === 1
   const paragraphs = Array.isArray(item.details)
     ? item.details.filter(Boolean)
     : item.details
@@ -192,15 +193,13 @@ function ProjectCard({ item }) {
               </p>
             )}
 
-            {/* Gallery: two square slots (images added in the future) */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4">
-              {[0, 1].map((i) => {
-                const src = hasGallery ? item.gallery[i] : null
-                if (src) {
-                  return (
+            {/* Gallery: renders all uploaded images, or two placeholders if none yet */}
+            <div className={`grid gap-3 md:gap-4 ${singleGallery ? 'grid-cols-1' : 'grid-cols-2'}`}>
+              {hasGallery
+                ? item.gallery.map((src, i) => (
                     <div
                       key={i}
-                      className="group relative aspect-square overflow-hidden rounded-lg border border-white/10 bg-white/5 cursor-pointer"
+                      className={`group relative overflow-hidden rounded-lg border border-white/10 bg-white/5 cursor-pointer ${singleGallery ? 'aspect-video' : 'aspect-square'}`}
                       onClick={() => setLightboxSrc(src)}
                     >
                       <Image
@@ -221,17 +220,15 @@ function ProjectCard({ item }) {
                         <span>Click to expand</span>
                       </button>
                     </div>
-                  )
-                }
-                return (
-                  <div
-                    key={i}
-                    className="flex items-center justify-center aspect-square rounded-lg border border-dashed border-white/15 bg-white/[0.03] text-gray-500 text-xs md:text-sm"
-                  >
-                    Image coming soon
-                  </div>
-                )
-              })}
+                  ))
+                : [0, 1].map((i) => (
+                    <div
+                      key={i}
+                      className="flex items-center justify-center aspect-square rounded-lg border border-dashed border-white/15 bg-white/[0.03] text-gray-500 text-xs md:text-sm"
+                    >
+                      Image coming soon
+                    </div>
+                  ))}
             </div>
           </div>
         </div>

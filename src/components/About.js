@@ -277,7 +277,7 @@ const About = () => {
           <ArrowUpRight size={18} />
         </Link>
         <a
-          href="https://drive.google.com/file/d/1CdrNXftUMnyIqbGCGbyXpuvwm12WSU2L/view?usp=sharing"
+          href="https://drive.google.com/file/d/18MROQbaK3A8-wWKi_4XVN8lRXD21ULTJ/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-blue-600 text-white dark:bg-blue-400 dark:text-black hover:scale-105 hover:shadow-lg"

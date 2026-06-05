@@ -54,11 +54,18 @@ html {
   position: fixed;
   top: 1.25rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
   width: 90%;
   max-width: 860px;
   z-index: 99;
   box-sizing: border-box;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.card-nav-container.nav-hidden {
+  transform: translateX(-50%) translateY(-150%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .card-nav {

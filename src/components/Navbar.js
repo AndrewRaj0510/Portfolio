@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { useRouter, usePathname } from 'next/navigation'
@@ -13,6 +13,7 @@ export default function Navbar() {
   const pathname = usePathname()
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
   const navRef = useRef(null)
   const cardsRef = useRef([])
   const tlRef = useRef(null)
@@ -90,6 +91,38 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isExpanded])
 
+  useEffect(() => {
+    let lastY = window.scrollY
+    let ticking = false
+
+    const update = () => {
+      const currentY = window.scrollY
+      const delta = currentY - lastY
+
+      // Always show near the top, or while the menu is expanded
+      if (currentY < 80 || isExpanded) {
+        setIsHidden(false)
+      } else if (delta > 6) {
+        setIsHidden(true)   // scrolling down
+      } else if (delta < -6) {
+        setIsHidden(false)  // scrolling up
+      }
+
+      lastY = currentY
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update)
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [isExpanded])
+
   const toggleMenu = () => {
     const tl = tlRef.current
     if (!tl) return
@@ -165,7 +198,7 @@ export default function Navbar() {
   ]
 
   return (
-    <div className="card-nav-container">
+    <div className={`card-nav-container ${isHidden ? 'nav-hidden' : ''}`}>
       <nav
         ref={navRef}
         className={`card-nav ${isExpanded ? 'open' : ''}`}
