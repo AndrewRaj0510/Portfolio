@@ -36,13 +36,14 @@ export default function ScrollReveal({
   duration = 700,
   threshold = 0,
   className = '',
+  initiallyVisible = false,
 }) {
   const ref = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(initiallyVisible)
 
   useEffect(() => {
     const el = ref.current
-    if (!el) return
+    if (!el || initiallyVisible) return
 
     // Fallback: if IntersectionObserver is unavailable, just show the content.
     if (typeof IntersectionObserver === 'undefined') {
@@ -65,7 +66,7 @@ export default function ScrollReveal({
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [threshold])
+  }, [threshold, initiallyVisible])
 
   const anim = animations[variant] || animations.fadeUp
 

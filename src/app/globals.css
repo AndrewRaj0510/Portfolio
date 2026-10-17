@@ -35,18 +35,13 @@ a {
 
 html {
   color-scheme: dark;
-}
-
-#tsparticles {
-  position: fixed !important;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: linear-gradient(to bottom, #020812ff 0%, #000000 100%) !important;
-}
-
-html {
   scroll-behavior: smooth;
+}
+
+/* Used by the project gallery lightbox (animate-[fadeIn_0.2s_ease-out]) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* === CardNav Styles === */
@@ -135,6 +130,35 @@ html {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+
+.logo-container:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 4px;
+}
+
+/* Pop on hover: overshooting ease gives a springy feel */
+.logo-avatar,
+.logo-name {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+.logo-container:hover .logo-avatar {
+  transform: scale(1.06);
+  border-color: #fff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+}
+
+.logo-container:hover .logo-name {
+  transform: scale(1.03);
+  color: #fff;
 }
 
 /* Expanded Content */

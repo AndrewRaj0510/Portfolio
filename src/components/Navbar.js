@@ -123,6 +123,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [isExpanded])
 
+  // Eagerly prefetch both routes so switching between them is instant
+  useEffect(() => {
+    router.prefetch('/')
+    router.prefetch('/projects')
+  }, [router])
+
   const toggleMenu = () => {
     const tl = tlRef.current
     if (!tl) return
@@ -150,9 +156,23 @@ export default function Navbar() {
     if (el) cardsRef.current[i] = el
   }
 
+  const goHome = () => {
+    closeMenu()
+    if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      router.push('/')
+    }
+  }
+
   const handleNavClick = (href) => {
     closeMenu()
     if (href.startsWith('#')) {
+      // Section anchors live on the home page; navigate there first from other routes
+      if (pathname !== '/') {
+        router.push(`/${href}`)
+        return
+      }
       const el = document.querySelector(href)
       if (el) el.scrollIntoView({ behavior: 'smooth' })
     }
@@ -168,13 +188,13 @@ export default function Navbar() {
       ],
     },
     {
-      label: 'About',
+      label: 'Professional Summary',
       bgColor: 'var(--card-about)',
       textColor: 'var(--card-text)',
       links: [
+        { label: 'Skills', href: '#skills' },
         { label: 'Experience', href: '#experience' },
         { label: 'Education', href: '#education' },
-        { label: 'Skills', href: '#skills' },
       ],
     },
     {
@@ -209,6 +229,12 @@ export default function Navbar() {
           <div
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
             onClick={toggleMenu}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                toggleMenu()
+              }
+            }}
             role="button"
             aria-label={isExpanded ? 'Close menu' : 'Open menu'}
             tabIndex={0}
@@ -217,9 +243,14 @@ export default function Navbar() {
             <div className="hamburger-line" />
           </div>
 
-          {/* CENTER: Profile + Name */}
-          <div className="logo-container">
-            <div className="rounded-full overflow-hidden border-2 border-gray-500 w-8 h-8 flex-shrink-0">
+          {/* CENTER: Profile + Name (goes home) */}
+          <button
+            type="button"
+            className="logo-container"
+            onClick={goHome}
+            aria-label="Go to home"
+          >
+            <div className="logo-avatar rounded-full overflow-hidden border-2 border-gray-500 w-8 h-8 flex-shrink-0">
               <Image
                 src="/passport.jpg"
                 alt="Profile Picture"
@@ -228,25 +259,22 @@ export default function Navbar() {
                 className="object-cover w-full h-full"
               />
             </div>
-            <span className="ml-2 font-semibold text-gray-100 text-sm whitespace-nowrap">
+            <span className="logo-name ml-2 font-semibold text-gray-100 text-sm whitespace-nowrap">
               Andrew Isaac Raj G
             </span>
-          </div>
+          </button>
 
-          {/* RIGHT: Connect button */}
+          {/* RIGHT: Contact button (scrolls to footer) */}
           <div className="flex items-center h-full">
             <button
-              onClick={() => {
-                const el = document.querySelector('#contact')
-                if (el) el.scrollIntoView({ behavior: 'smooth' })
-              }}
+              onClick={() => handleNavClick('#contact')}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium
                 bg-gray-700 text-gray-200
                 hover:bg-gray-600 transition-colors duration-200"
-              aria-label="Connect"
+              aria-label="Contact"
             >
               <HiOutlineMail className="w-4 h-4" />
-              <span className="hidden sm:inline">Connect</span>
+              <span className="hidden sm:inline">Contact</span>
             </button>
           </div>
         </div>
@@ -287,14 +315,7 @@ export default function Navbar() {
                       <button
                         key={i}
                         className="nav-card-link"
-                        onClick={() => {
-                          closeMenu()
-                          if (pathname === '/') {
-                            window.scrollTo({ top: 0, behavior: 'smooth' })
-                          } else {
-                            router.push('/')
-                          }
-                        }}
+                        onClick={goHome}
                       >
                         <GoArrowUpRight className="nav-card-link-icon" />
                         {lnk.label}

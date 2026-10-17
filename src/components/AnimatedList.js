@@ -96,6 +96,8 @@ function ProjectCard({ item }) {
   const [expanded, setExpanded] = useState(false)
   const [lightboxSrc, setLightboxSrc] = useState(null)
   const isPrivate = item.visibility === 'private'
+  // gallery: null hides the gallery entirely; [] shows "coming soon" placeholders
+  const showGallery = item.gallery !== null
   const hasGallery = Array.isArray(item.gallery) && item.gallery.length > 0
   const singleGallery = hasGallery && item.gallery.length === 1
   const paragraphs = Array.isArray(item.details)
@@ -173,7 +175,7 @@ function ProjectCard({ item }) {
       >
         <div className="overflow-hidden">
           <div className="border-t border-white/10 px-5 md:px-6 pt-4 pb-5 flex flex-col gap-4">
-            {/* Details text — supports multiple paragraphs */}
+            {/* Details text: supports multiple paragraphs */}
             {paragraphs.length > 0 ? (
               <div className="flex flex-col gap-3">
                 {paragraphs.map((para, i) => (
@@ -194,6 +196,7 @@ function ProjectCard({ item }) {
             )}
 
             {/* Gallery: renders all uploaded images, or two placeholders if none yet */}
+            {showGallery && (
             <div className={`grid gap-3 md:gap-4 ${singleGallery ? 'grid-cols-1' : 'grid-cols-2'}`}>
               {hasGallery
                 ? item.gallery.map((src, i) => (
@@ -230,6 +233,7 @@ function ProjectCard({ item }) {
                     </div>
                   ))}
             </div>
+            )}
           </div>
         </div>
       </div>

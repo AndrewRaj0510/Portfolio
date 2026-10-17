@@ -1,8 +1,9 @@
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-20">
+    <footer id="contact" className="w-full mt-20">
       {/* === Solid Line === */}
       <div className="border-t-8 border-black dark:border-white w-full"></div>
 
@@ -14,9 +15,15 @@ export default function Footer() {
           <h2 className="text-2xl font-bold text-black dark:text-white">
             Andrew Isaac Raj G
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 mt-2">
-            Aspiring Data Scientist | Python • SQL • Machine Learning • Big Data • AI Automation • Power BI | Ex-Accenture
-          </p>
+          <h3 className="text-lg font-semibold text-black dark:text-white">
+            AI Solutions Engineer
+          </h3>
+          <ul className="text-gray-700 dark:text-gray-300 mt-2">
+            <li>Address: Dubai, United Arab Emirates</li>
+            <li>Mobile: +971 521250733</li>
+            <li>WhatsApp: +91 6379277369</li>
+            <li>Email: mail2airisaac@gmail.com</li>
+          </ul>
         </div>
 
         {/* === Block 2: Quick Links === */}
@@ -25,9 +32,9 @@ export default function Footer() {
             Quick Links
           </h3>
           <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-            <li><a href="#about" className="hover:text-blue-600 transition">About</a></li>
+            <li><a href="#about" className="hover:text-blue-600 transition">Professional Summary</a></li>
             <li><a href="#skills" className="hover:text-blue-600 transition">Skills</a></li>
-            <li><a href="#projects" className="hover:text-blue-600 transition">Projects</a></li>
+            <li><Link href="/projects" className="hover:text-blue-600 transition">Projects</Link></li>
             <li><a href="#contact" className="hover:text-blue-600 transition">Contact</a></li>
           </ul>
         </div>
@@ -55,7 +62,7 @@ export default function Footer() {
               <FaLinkedin size={22} />
             </a>
             <a
-              href="https://instagram.com/"
+              href="https://www.instagram.com/andrew_raj_0510/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition"

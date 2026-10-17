@@ -20,6 +20,34 @@ const projects = [
       'Built as a Next.js App Router app where each section (intro, about, skills, projects, contact) is its own client component composed onto the page, with anchor-based smooth scrolling between them. WebGL shader visuals (a ray-marched prism background and a loading-screen scan effect) are loaded dynamically on the client to avoid SSR issues, while a floating CardNav navbar animates with GSAP.',
       'Tech stack: Next.js 16, React 19, Tailwind CSS, Three.js, and GSAP animations, deployed on Vercel.',
     ],
+    gallery: null,
+  },
+  {
+    title: 'Property Investment Intelligence',
+    description:
+      'An MSc dissertation project that predicts and explains the gross rental yield of Dubai properties and turns a pasted Bayut or Dubizzle listing into an invest-or-avoid verdict, using real Dubai Land Department sales and Ejari rent data.',
+    image: null,
+    github: 'https://github.com/AndrewRaj0510/Property_Investment_Intelligence',
+    visibility: 'public',
+    details: [
+      "My MSc Data Science dissertation at Middlesex University Dubai. A property listing only states one half of the yield ratio: a sale listing has the price but not the rent, and a rent listing has the rent but not the price. This system supplies the missing half from a model trained on the official market, computes the listing's gross yield, and benchmarks it against comparable stock to return a Good investment, Below market, or Insufficient data verdict.",
+      'An offline pipeline ingests 117k DLD sale transactions and 250k Ejari rent contracts (2012 to 2026) from the Dubai DDA OpenAPI, cleans them in SQL, and distils them into about 2,550 market segments. LightGBM, Random Forest, and XGBoost were compared under identical 5-fold cross-validation, and XGBoost was selected. A FastAPI backend serves the model and a live listing scorer that pulls the listing through Apify, explains every prediction with SHAP feature attributions, and adds an LLM-generated narrative with grounded Q&A. Macroeconomic, weather, and seasonal features were also ingested and measured; they added no predictive power, which is reported as a finding. Outside the covered areas, the app refuses to give a verdict rather than extrapolate.',
+      'Tech stack: Python, FastAPI, XGBoost, LightGBM, SHAP, LangChain, and OpenAI (GPT-5) on the backend; Supabase PostgreSQL; Apify for listing scraping; Next.js 14 and TypeScript for the YieldLens Dubai frontend.',
+    ],
+    gallery: [],
+  },
+  {
+    title: 'Microsoft CloudOptima',
+    description:
+      'A multi-agent cloud architecture designer: describe your infrastructure, and five AI agents collaborate to design, cost, secure, and validate an Azure deployment. In development.',
+    image: null,
+    github: 'https://github.com/G-Narendra/Microsoft_CloudOptima',
+    visibility: 'public',
+    details: [
+      'A team-built multi-agent AI system that replaces hours of clicking through the Azure Portal. You describe what you need, and five specialist agents work on it together: an Architect designs the compute, storage, network, and data tiers, a Cost Analyst estimates monthly spend and finds savings, a Security Engineer scans for vulnerabilities, a Compliance Officer checks the design against regulations such as PDPL, HIPAA, and SOC 2, and a Judge resolves disagreements between them. The output is a complete architecture plan with IaC templates, a cost breakdown, a security report, and compliance status.',
+      'Security is built into every layer: prompt-injection defences, strict Pydantic schema validation of every agent output, input sanitization, rate limiting, and append-only audit logging. The configuration and domain models, the LLM client layer (Nvidia NIM and Azure OpenAI, with retries and a response cache), input sanitization, and logging and health checks are complete; the agents, orchestrator, and Streamlit dashboard are next.',
+      'Tech stack: Python 3.11, Pydantic v2, Nvidia NIM, Azure OpenAI, Streamlit, Docker, and Azure App Service.',
+    ],
     gallery: [],
   },
   {
@@ -60,19 +88,6 @@ const projects = [
       '/projects/job-scraper-console/2.png',
       '/projects/job-scraper-console/3.png',
     ],
-  },
-  {
-    title: 'AIRNotes',
-    description: 'In Development',
-    image: '/projects/airnotes/cover.png',
-    github: 'https://github.com/AndrewRaj0510/AIRNotes',
-    visibility: 'public',
-    details: [
-      'An AI-powered document processor and study assistant that lets you chat with a local LLM, analyze uploaded documents, and manage past conversations, all running privately on your own machine.',
-      'A Next.js frontend talks to a FastAPI backend that persists conversations and messages in PostgreSQL and proxies prompts to a locally hosted model through Ollama. Replies stream back token-by-token over Server-Sent Events, conversations are auto-named from their content, uploaded files are tracked with metadata, and a Normal-vs-Thinking toggle switches between fast answers and deeper reasoning.',
-      'Tech stack: Next.js 16, React 18, TypeScript, and Tailwind CSS on the frontend; FastAPI and PostgreSQL on the backend; Ollama running a local Qwen model for inference.',
-    ],
-    gallery: [],
   },
   {
     title: 'AI Travel Planner',
@@ -198,6 +213,19 @@ const projects = [
       'Tech stack: n8n, Python, and JavaScript; OpenAI (GPT-4, GPT-4o, gpt-image-1); Google, Meta, and X APIs; Google Drive and ImageKit for storage and hosting.',
     ],
     gallery: ['/projects/automated-image-generation/1.jpg', '/projects/automated-image-generation/2.jpg', '/projects/automated-image-generation/3.jpg'],
+  },
+  {
+    title: 'AIRNotes',
+    description: 'In Development',
+    image: '/projects/airnotes/cover.png',
+    github: 'https://github.com/AndrewRaj0510/AIRNotes',
+    visibility: 'public',
+    details: [
+      'An AI-powered document processor and study assistant that lets you chat with a local LLM, analyze uploaded documents, and manage past conversations, all running privately on your own machine.',
+      'A Next.js frontend talks to a FastAPI backend that persists conversations and messages in PostgreSQL and proxies prompts to a locally hosted model through Ollama. Replies stream back token-by-token over Server-Sent Events, conversations are auto-named from their content, uploaded files are tracked with metadata, and a Normal-vs-Thinking toggle switches between fast answers and deeper reasoning.',
+      'Tech stack: Next.js 16, React 18, TypeScript, and Tailwind CSS on the frontend; FastAPI and PostgreSQL on the backend; Ollama running a local Qwen model for inference.',
+    ],
+    gallery: [],
   },
 ]
 

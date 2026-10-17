@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Myself'
 import About from '@/components/About'
 import Skills from '@/components/Skills'
-import Contact from '@/components/Contact'
+import Experience from '@/components/Experience'
 import Footer from '@/components/Footer'
 import ScrollReveal from '@/components/ScrollReveal'
 
@@ -14,16 +14,26 @@ import ScrollReveal from '@/components/ScrollReveal'
 const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), { ssr: false })
 const PrismBackground = dynamic(() => import('@/components/PrismBackground'), { ssr: false })
 
+// Module-level flag: survives client-side navigation (e.g. /projects -> /) but
+// resets on a full page load, so the entrance plays once per visit.
+let hasPlayedIntro = false
+
 export default function Home() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => !hasPlayedIntro)
+  const [skipEntrance] = useState(() => hasPlayedIntro)
+
+  const handleIntroComplete = () => {
+    hasPlayedIntro = true
+    setLoading(false)
+  }
 
   return (
     <main className="relative min-h-screen">
       <PrismBackground />
-      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      {loading && <LoadingScreen onComplete={handleIntroComplete} />}
       <Navbar />
 
-      <ScrollReveal variant="fadeDown" duration={900}>
+      <ScrollReveal variant="fadeDown" duration={900} initiallyVisible={skipEntrance}>
         <section id="home">
           <Hero />
         </section>
@@ -35,9 +45,7 @@ export default function Home() {
         <Skills />
       </ScrollReveal>
 
-      <ScrollReveal variant="zoomIn" duration={800}>
-        <Contact />
-      </ScrollReveal>
+      <Experience />
 
       <ScrollReveal variant="blur" duration={600}>
         <Footer />
