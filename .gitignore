@@ -46,3 +46,6 @@ CLAUDE.md
 
 # misc
 /projects
+
+# private repo URLs, deliberately kept out of the public repo
+/private-repos.local.json

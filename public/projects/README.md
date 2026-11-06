@@ -2,9 +2,9 @@
 
 One folder per project. Drop images in using this naming convention:
 
-- `cover.<ext>` — the tile thumbnail (small image on the left of the card)
-- `1.<ext>` — first gallery image (shown when the card is expanded)
-- `2.<ext>` — second gallery image
+- `cover.<ext>` — the project's cover (its only slide if it has no gallery images)
+- `1.<ext>` — first slide in the project's slide deck
+- `2.<ext>` — second slide, and so on
 
 `<ext>` can be `.png`, `.jpg`, or `.jpeg`.
 
@@ -20,6 +20,7 @@ gallery: ['/projects/portfolio-website/1.png', '/projects/portfolio-website/2.pn
 | Folder | Project |
 |---|---|
 | portfolio-website | Portfolio Website |
+| claimlens | ClaimLens |
 | content-creation-agent | Content Creation Agent |
 | job-scraper-console | Job Scraper Console |
 | airnotes | AIRNotes |
