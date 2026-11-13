@@ -44,6 +44,66 @@ html {
   to { opacity: 1; }
 }
 
+/* Hero "Projects" button: a slow, soft cyan glow that pulses around the border */
+@keyframes projectsGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px 1px rgba(6, 182, 212, 0.3), 0 0 12px 2px rgba(6, 182, 212, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 12px 3px rgba(6, 182, 212, 0.6), 0 0 24px 6px rgba(6, 182, 212, 0.25);
+  }
+}
+
+.projects-glow {
+  animation: projectsGlow 3s ease-in-out infinite;
+}
+
+/* Hero project deck: the front card flies off to the left when the next one comes forward */
+@keyframes deckExit {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(-75%, 40px, 0) rotate(-14deg);
+    opacity: 0;
+  }
+}
+
+.deck-exit {
+  animation: deckExit 0.55s ease-in forwards;
+}
+
+/* Hero project deck: the active dot fills up over the time a card stays in front.
+   Its animationend is what moves the deck on, so pausing it pauses the deck. */
+@keyframes deckTimer {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.deck-timer {
+  transform-origin: left;
+  animation: deckTimer 5s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep a steady glow for visitors who turn off animations */
+  .projects-glow {
+    animation: none;
+    box-shadow: 0 0 10px 2px rgba(6, 182, 212, 0.45);
+  }
+
+  /* No auto-rotation and no fly-off: the dots still switch cards */
+  .deck-exit,
+  .deck-timer {
+    animation: none;
+  }
+
+  .deck-timer {
+    transform: scaleX(1);
+  }
+}
+
 /* === CardNav Styles === */
 .card-nav-container {
   position: fixed;
