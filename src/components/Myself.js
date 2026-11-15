@@ -36,7 +36,8 @@ const headline = [
   'Immediate Joiner',
 ]
 
-export default function Hero() {
+// introPlaying: the loading screen still covers the page, so the deck waits to start.
+export default function Hero({ introPlaying = false }) {
   return (
     <section className="relative flex flex-col min-h-[75vh] md:min-h-[calc(100svh-80px)] px-6 sm:px-10 md:px-16 lg:px-20 pt-12 md:pt-6 pb-24 lg:pb-20 mb-12">
       {/* Headline, across the full width. From md each part stays whole (nowrap) and the
@@ -76,7 +77,7 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {/* Resume Button (same Drive link as "View Resume Online") */}
             <a
-              href="https://drive.google.com/file/d/1ppp3umqwBcgmNxI_tIcgqQuKKhyFBLWA/view?usp=sharing"
+              href="/go/resume"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all duration-300
@@ -109,7 +110,7 @@ export default function Hero() {
 
         {/* Right: featured project deck */}
         <div className="flex w-full justify-center lg:flex-1 lg:min-w-0">
-          <HeroDeck />
+          <HeroDeck holdStill={introPlaying} />
         </div>
       </div>
 

@@ -10,8 +10,13 @@ import Experience from '@/components/Experience'
 import Footer from '@/components/Footer'
 import ScrollReveal from '@/components/ScrollReveal'
 
-// Dynamic imports for WebGL components (no SSR)
-const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), { ssr: false })
+// Dynamic imports for WebGL components (no SSR). The loader's `loading` fallback is the
+// same black full-screen cover, and unlike the WebGL part it is in the server HTML, so
+// the page underneath is never painted before the intro (no flash, no visible reveal).
+const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), {
+  ssr: false,
+  loading: () => <div className="loading-screen" aria-hidden="true" />,
+})
 const PrismBackground = dynamic(() => import('@/components/PrismBackground'), { ssr: false })
 
 // Module-level flag: survives client-side navigation (e.g. /projects -> /) but
@@ -35,7 +40,7 @@ export default function Home() {
 
       <ScrollReveal variant="fadeDown" duration={900} initiallyVisible={skipEntrance}>
         <section id="home">
-          <Hero />
+          <Hero introPlaying={loading} />
         </section>
       </ScrollReveal>
 

@@ -167,7 +167,9 @@ function DeckCard({ project, position, leaving, onExitEnd }) {
   )
 }
 
-export default function HeroDeck() {
+// holdStill: keep the first card in front (timer paused) while the intro covers the page,
+// so visitors see it for the full 5 seconds instead of meeting a card mid-flight.
+export default function HeroDeck({ holdStill = false }) {
   const [active, setActive] = useState(0)
   const [leaving, setLeaving] = useState(null)
   const [isPaused, setIsPaused] = useState(false)
@@ -230,7 +232,7 @@ export default function HeroDeck() {
                 // Keyed by card so the timer restarts on every change, clicks included.
                 key={active}
                 onAnimationEnd={() => goTo((active + 1) % count)}
-                style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+                style={{ animationPlayState: isPaused || holdStill ? 'paused' : 'running' }}
                 className="deck-timer absolute inset-0 rounded-full bg-cyan-400"
               />
             )}

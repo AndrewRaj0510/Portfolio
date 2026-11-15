@@ -12,6 +12,7 @@ import {
   FaTimes,
 } from 'react-icons/fa'
 import Lightbox from '@/components/Lightbox'
+import { toSlug } from '@/lib/slug'
 
 const SLIDE_INTERVAL_MS = 4000
 // At xl the deck sits in one of three columns; below that it spans the card.
@@ -631,10 +632,6 @@ function ProjectPicker({ projects, allProjects, selected, onSelect, onStep, filt
     </div>
   )
 }
-
-// "Microsoft CloudOptima" -> "microsoft-cloudoptima"; HeroDeck's slugs follow this.
-const toSlug = (title) =>
-  title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 export default function ProjectShowcase({ projects, groups }) {
   // Everything steps through projects in the order the sidebar shows them.

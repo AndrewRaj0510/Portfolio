@@ -46,7 +46,7 @@ export default function Footer() {
           </h3>
           <div className="flex justify-center md:justify-start gap-6">
             <a
-              href="https://github.com/AndrewRaj0510"
+              href="/go/github"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition"
@@ -54,7 +54,7 @@ export default function Footer() {
               <FaGithub size={22} />
             </a>
             <a
-              href="https://www.linkedin.com/in/andrew-isaac-raj-g-970648334/"
+              href="/go/linkedin"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition"
@@ -62,7 +62,7 @@ export default function Footer() {
               <FaLinkedin size={22} />
             </a>
             <a
-              href="https://www.instagram.com/andrew_raj_0510/"
+              href="/go/instagram"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition"

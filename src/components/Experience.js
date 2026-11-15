@@ -221,7 +221,7 @@ const Experience = () => {
           <ArrowUpRight size={18} />
         </Link>
         <a
-          href="https://drive.google.com/file/d/1ppp3umqwBcgmNxI_tIcgqQuKKhyFBLWA/view?usp=sharing"
+          href="/go/resume"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all duration-300 bg-blue-600 text-white dark:bg-blue-400 dark:text-black hover:scale-105 hover:shadow-lg"

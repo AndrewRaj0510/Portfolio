@@ -210,8 +210,8 @@ export default function Navbar() {
       bgColor: 'var(--card-contact)',
       textColor: 'var(--card-text)',
       links: [
-        { label: 'GitHub', href: 'https://github.com/AndrewRaj0510', external: true },
-        { label: 'LinkedIn', href: 'https://www.linkedin.com/in/andrew-isaac-raj-g-970648334/', external: true },
+        { label: 'GitHub', href: '/go/github', external: true },
+        { label: 'LinkedIn', href: '/go/linkedin', external: true },
         { label: 'Connect with me', href: '#contact' },
       ],
     },

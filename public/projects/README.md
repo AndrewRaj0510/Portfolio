@@ -8,7 +8,7 @@ One folder per project. Drop images in using this naming convention:
 
 `<ext>` can be `.png`, `.jpg`, or `.jpeg`.
 
-After adding `1.x` / `2.x` to a folder, wire them into `src/app/projects/page.js`
+After adding `1.x` / `2.x` to a folder, wire them into `src/app/projects/data.js`
 by setting that project's `gallery` array, e.g.:
 
 ```js
