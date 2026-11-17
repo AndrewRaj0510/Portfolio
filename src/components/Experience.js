@@ -4,6 +4,12 @@ import { ArrowUpRight } from 'lucide-react'
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 
+// Renders **text** segments in bold
+const withBold = (text) =>
+  text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+    i % 2 ? <strong key={i} className="font-bold">{part}</strong> : part
+  );
+
 const Experience = () => {
   const experiences = [
     {
@@ -11,32 +17,32 @@ const Experience = () => {
       company: "Techies Infotech FZCO",
       duration: "Feb 2025 - Oct 2026",
       description:
-        "Tech Stack: Python, FastAPI, LangChain, n8n, Next.js, React, TypeScript, Tailwind CSS, OpenAI (GPT-5, Whisper), Anthropic Claude (Haiku, Sonnet), Amazon Bedrock (Nova 2 Lite), PostgreSQL, Supabase (pgvector), Docker, AWS S3, Playwright, Apify, SerpApi, Claude Code",
+        "",
       highlights: [
         {
-          label: "LPO Extraction Platform",
-          text: "Built and deployed a multimodal document extraction platform (Next.js, FastAPI, PostgreSQL, Docker) that processes 1,500 Local Purchase Orders in 10 minutes at 98% accuracy, with only 2% routed to manual review.",
-          subpoints: [
-            "Benchmarked Amazon Bedrock Nova 2 Lite and OpenAI GPT-5 before migrating to Anthropic Claude Haiku and Sonnet multimodal models for higher accuracy on scanned and image-based POs, prompt-engineered a chain of system and follow-up prompts, and built item, product and location master data for entity matching and normalization.",
-          ],
+          label: "LPO extraction platform",
+          text: "Built and deployed a multimodal platform (Next.js, FastAPI, PostgreSQL, Docker) that reads purchase orders, including scanned and image-based ones, and turns them into clean data: **1,500 orders in 10 minutes** at **98% accuracy**, with the **2%** it is unsure about sent to a person. Tested Amazon Bedrock Nova 2 Lite and GPT-5 before moving to Claude Haiku and Sonnet for better accuracy, wrote a chain of system and follow-up prompts, and built item, product and location master data for matching and normalisation.",
         },
         {
-          label: "Agentic Content Automation",
-          text: "Architected an autonomous multi-agent pipeline where a scraper agent ingests and LLM-scores 50+ RSS and news feeds daily, a content generation agent writes LinkedIn and Instagram brand-specific caption and image prompts, and a feedback guardrail agent approves output before webhook-triggered n8n workflows publish cross-platform; reduced manual effort for the social media team, with brand posts exceeding 1,000 views.",
+          label: "Agentic content automation",
+          text: "Built a multi-agent pipeline where a scraper agent reads and scores **50+ news feeds daily**, a content agent writes brand-specific LinkedIn and Instagram posts and image prompts, and a guardrail agent approves each one before webhook-triggered n8n workflows publish it. Brand posts passed **1,000 views**.",
         },
         {
-          label: "Hybrid RAG Assistant",
-          text: "Engineered a retrieval-augmented generation system answering natural language questions on HR, finance, payroll and performance data by routing queries across PostgreSQL, pgvector and a knowledge graph; applied prompt caching and token optimization to cut inference cost.",
+          label: "Hybrid RAG assistant",
+          text: "Built an assistant that answers staff questions on HR, finance, payroll and performance data by routing queries across PostgreSQL, pgvector and a knowledge graph, with prompt caching to keep LLM costs down.",
         },
         {
-          label: "Job Scraper Console",
-          text: "Built a browser-based console that scrapes job postings and client leads from Reddit (RSS), LinkedIn and Upwork (Apify) on user-defined parameters, backed by FastAPI, PostgreSQL and AWS S3 with rate-limited endpoints; reduced manual effort for the HR and marketing teams in finding clients and new hires.",
+          label: "Job scraper console",
+          text: "Built a console that pulls job postings and client leads from Reddit, LinkedIn and Upwork, backed by FastAPI, PostgreSQL and AWS S3 with rate-limited endpoints, cutting manual searching for the HR and marketing teams.",
         },
         {
           label: "Conversational AI",
-          text: "Delivered a flight-intelligence assistant combining live Google Flights pricing (SerpApi) and FlightRadar24 data (Playwright) with grounded multi-turn chat, and an embeddable WhatsApp-style chat widget with LLM intent classification and RAG answers over OpenAI embeddings and pgvector.",
+          text: "Built a flight assistant that combines live Google Flights pricing and FlightRadar24 data in a grounded multi-turn chat, and an embeddable support chat widget with LLM intent classification and RAG answers over pgvector.",
         },
-        "Shipped every product full stack: responsive React and Next.js (TypeScript) frontends with reusable components and REST API integration, and Dockerized FastAPI backends deployed through CI/CD pipelines and secured with JWT authentication, auth logging and per-endpoint rate limiting; built AI-first using Claude Code.",
+        {
+          label: "Full-stack delivery",
+          text: "Shipped every product end to end with React and Next.js (TypeScript) frontends and Dockerised FastAPI backends, deployed through CI/CD and secured with JWT, auth logging and rate limiting. Built AI-first with Claude Code.",
+        },
       ],
     },
     {
@@ -132,18 +138,18 @@ const Experience = () => {
                       <p className="text-sm font-medium text-gray-500 dark:text-gray-400 leading-relaxed">
                         {exp.duration}
                       </p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {exp.description && (<p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                         {exp.description}
-                      </p>
+                      </p>)}
                       <ul className="list-disc list-outside pl-6 text-black dark:text-white space-y-1">
                         {exp.highlights.map((item, idx) => (
                           <li key={idx} className="text-sm text-justify leading-relaxed">
                             {typeof item === "string" ? (
-                              item
+                              withBold(item)
                             ) : (
                               <>
                                 <span className="font-semibold">{item.label}:</span>{" "}
-                                {item.text}
+                                {withBold(item.text)}
                                 {item.subpoints && (
                                   <ul className="list-[circle] list-outside pl-5 mt-1 space-y-1">
                                     {item.subpoints.map((sub, subIdx) => (
