@@ -32,3 +32,5 @@ gallery: ['/projects/portfolio-website/1.png', '/projects/portfolio-website/2.pn
 | healthcare-chatbot | Healthcare Information Chatbot |
 | natural-language-data-visualizer | Natural Language Data Visualizer |
 | automated-image-generation | Automated Image Generation |
+| property-intelligence-chatbot | Property Intelligence Chatbot |
+| property-investment-intelligence | Property Investment Intelligence |

@@ -7,6 +7,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaExpand,
+  FaExternalLinkAlt,
   FaFilter,
   FaGithub,
   FaTimes,
@@ -79,7 +80,18 @@ function StatusBadges({ project }) {
       >
         {project.visibility}
       </span>
-      {!isPrivate && (
+      {project.demo && (
+        <a
+          href={project.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-cyan-300/60 bg-cyan-300/15 text-cyan-200 text-sm hover:bg-cyan-300/25 hover:text-white transition-colors duration-200"
+        >
+          <FaExternalLinkAlt className="w-3 h-3" />
+          Live demo
+        </a>
+      )}
+      {!isPrivate && project.github && (
         <a
           href={project.github}
           target="_blank"
@@ -542,14 +554,14 @@ function ProjectSidebar({ groups, projects, allProjects, selected, onSelect, fil
       </div>
       <nav
         aria-label="Projects"
-        className="flex flex-1 flex-col gap-2 min-h-0 px-3 pb-3 overflow-y-auto"
+        className="flex flex-1 flex-col gap-1.5 min-h-0 px-3 pb-3 overflow-y-auto"
       >
         {groups.map((group) => {
           const groupProjects = projects.filter((project) => project.group === group)
           if (groupProjects.length === 0) return null
           return (
-            <div key={group} className="flex flex-col gap-0.5">
-              <h2 className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-gray-400">
+            <div key={group} className="flex flex-col gap-px">
+              <h2 className="px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-gray-400">
                 {group}
               </h2>
               {groupProjects.map((project) => {
@@ -560,7 +572,7 @@ function ProjectSidebar({ groups, projects, allProjects, selected, onSelect, fil
                     type="button"
                     onClick={() => onSelect(project)}
                     aria-current={isSelected ? 'true' : undefined}
-                    className={`flex items-center justify-between gap-2 min-h-8 px-3 py-1 rounded-lg border text-left text-sm transition-colors duration-200 ${
+                    className={`flex items-center justify-between gap-2 min-h-7 px-3 py-1 rounded-lg border text-left text-sm transition-colors duration-200 ${
                       isSelected
                         ? 'border-cyan-400/50 bg-cyan-400/10 text-white'
                         : 'border-transparent text-gray-300 hover:bg-white/10 hover:text-white'

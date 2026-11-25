@@ -2,47 +2,27 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Building2, Car, ShieldCheck, Megaphone, Cloud } from 'lucide-react'
+import { ArrowUpRight, Building2, Car, ShieldCheck, Megaphone, MessagesSquare } from 'lucide-react'
 
 // Each slug must match the project's title on /projects (lowercase, non-alphanumerics
-// as hyphens): ProjectShowcase opens the project named by ?project=<slug>.
+// as hyphens): ProjectShowcase opens the project named by ?project=<slug>. `subtitle` is
+// for a card titled by its product name (YieldLens) rather than its site title.
+// The KPIs are each project's `results` in app/projects/data.js: keep them in step by
+// hand (this is a client component, so it can't import that file).
 // Set `image` once a cover exists; until then the card shows a placeholder.
 const featured = [
   {
-    slug: 'property-investment-intelligence',
-    title: 'Property Investment Intelligence',
-    tagline: 'Turns a pasted Dubai listing into an invest-or-avoid verdict.',
-    image: null,
-    icon: Building2,
+    slug: 'property-intelligence-chatbot',
+    title: 'Property Intelligence Chatbot',
+    tagline: 'Agentic RAG chatbot for property listings, with a source link for every answer.',
+    image: '/projects/property-intelligence-chatbot/cover.png',
+    icon: MessagesSquare,
+    status: 'Live',
     kpis: [
-      { value: '71', label: 'Dubai communities' },
-      { value: '2,550', label: 'market segments' },
-      { value: '14 yrs', label: 'of DLD and Ejari data' },
-    ],
-  },
-  {
-    slug: 'claimlens',
-    title: 'ClaimLens',
-    tagline: 'Multimodal car-claims copilot that leaves the decision to a human adjuster.',
-    image: '/projects/claimlens/cover.jpg',
-    icon: Car,
-    kpis: [
-      { value: '0.77', label: 'mask mAP@0.5' },
-      { value: '16.3 s', label: 'full claim to adjuster' },
-      { value: '$0.0014', label: 'LLM cost per claim' },
-    ],
-  },
-  {
-    slug: 'wikiguard',
-    title: 'WikiGuard',
-    tagline: 'Ranks live Wikipedia edits by vandalism risk for human patrollers.',
-    image: null,
-    icon: ShieldCheck,
-    status: 'In development',
-    kpis: [
-      { value: '0.96', label: 'precision, top 50 edits' },
-      { value: '0.364', label: 'PR-AUC vs 0.187 baseline' },
-      { value: '25,302', label: 'edits in the test week' },
+      { value: '36/36', label: 'test questions answered correctly' },
+      { value: '8/8', label: 'correct refusals' },
+      { value: '5.2 s', label: 'median answer time' },
+      { value: '$0', label: 'infrastructure cost' },
     ],
   },
   {
@@ -55,20 +35,49 @@ const featured = [
     kpis: [
       { value: '1,000+', label: 'views per brand post' },
       { value: '50+', label: 'news feeds ingested' },
-      { value: 'Live', label: 'in production for a client' },
+      { value: '0.7', label: 'minimum LLM relevance score' },
+      { value: '1-5', label: 'slides per carousel' },
     ],
   },
   {
-    slug: 'microsoft-cloudoptima',
-    title: 'Microsoft CloudOptima',
-    tagline: 'Plain-English requirements in, a costed and checked Azure architecture out.',
+    slug: 'wikiguard',
+    title: 'WikiGuard',
+    tagline: 'Ranks live Wikipedia edits by vandalism risk for human patrollers.',
     image: null,
-    icon: Cloud,
+    icon: ShieldCheck,
     status: 'In development',
     kpis: [
-      { value: '5', label: 'specialist AI agents' },
-      { value: '0.0%', label: 'PyRIT attack success' },
-      { value: '4', label: 'design, cost, security, compliance' },
+      { value: '0.364', label: 'PR-AUC, RoBERTa champion' },
+      { value: '0.187', label: 'PR-AUC, rule baseline' },
+      { value: '0.96', label: 'precision in the top 50 edits' },
+      { value: '25,302', label: 'edits in the test week' },
+    ],
+  },
+  {
+    slug: 'property-investment-intelligence',
+    title: 'YieldLens',
+    subtitle: 'Property Investment Intelligence',
+    tagline: 'Paste a Dubai listing, get an invest-or-avoid verdict with the yield explained.',
+    image: '/projects/property-investment-intelligence/cover.png',
+    icon: Building2,
+    kpis: [
+      { value: '0.872', label: 'R² on held-out data' },
+      { value: '0.343', label: 'R², baseline' },
+      { value: '368k+', label: 'Dubai property records' },
+      { value: '71', label: 'Dubai communities covered' },
+    ],
+  },
+  {
+    slug: 'claimlens',
+    title: 'ClaimLens',
+    tagline: 'Multimodal car-claims copilot that leaves the decision to a human adjuster.',
+    image: '/projects/claimlens/cover.jpg',
+    icon: Car,
+    kpis: [
+      { value: '0.77', label: 'mask mAP@0.5 on the test split' },
+      { value: '600/s', label: 'API reads at p95 29 ms' },
+      { value: '$0.0014', label: 'LLM cost per claim' },
+      { value: '16.3 s', label: 'full claim to the adjuster' },
     ],
   },
 ]
@@ -83,7 +92,7 @@ const STACK = [
 ]
 const HIDDEN = 'translate-x-8 scale-[0.88] brightness-[0.5] opacity-0'
 
-const IMAGE_SIZES = '(min-width: 1024px) 32vw, (min-width: 640px) 55vw, 90vw'
+const IMAGE_SIZES = '(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 90vw'
 
 const STATUS_STYLES = {
   Live: 'border-emerald-400/50 bg-emerald-500/20 text-emerald-200',
@@ -114,7 +123,7 @@ function DeckCard({ project, position, leaving, onExitEnd }) {
           fills it edge to edge (cover), so a panel taller than 16:9 trims the image's right
           edge rather than leaving bars above and below. Anchored left, where app
           screenshots keep their titles. */}
-      <div className="relative flex-none overflow-hidden aspect-video sm:aspect-auto bg-black border-b sm:border-b-0 sm:border-r border-white/10 sm:w-[58%]">
+      <div className="relative flex-none overflow-hidden aspect-video sm:aspect-auto bg-black border-b sm:border-b-0 sm:border-r border-white/10 sm:w-[52%]">
         {project.image ? (
           <Image
             src={project.image}
@@ -140,28 +149,33 @@ function DeckCard({ project, position, leaving, onExitEnd }) {
             {project.status}
           </span>
         )}
-      </div>
-
-      {/* Details side; the KPIs take up whatever height the card has spare */}
-      <div className="flex min-w-0 flex-1 flex-col gap-3 p-4">
-        <div>
-          <h3 className="text-base font-bold leading-snug text-white">{project.title}</h3>
-          <p className="mt-0.5 text-xs leading-snug text-gray-300">{project.tagline}</p>
-        </div>
-
-        <div className="flex flex-1 flex-col justify-center gap-2">
-          {project.kpis.map(({ value, label }) => (
-            <div key={label} className="flex items-baseline gap-2 rounded-md border border-white/10 bg-white/5 px-3 py-2">
-              <span className="flex-none text-lg font-extrabold leading-tight text-cyan-300">{value}</span>
-              <span className="min-w-0 text-[11px] leading-tight text-gray-400">{label}</span>
-            </div>
-          ))}
-        </div>
-
-        <span className="flex items-center gap-1 self-end text-xs font-semibold text-white/70 transition-colors duration-200 group-hover:text-cyan-300">
+        {/* On the screenshot rather than in the details, which need the height for KPIs */}
+        <span className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full border border-white/20 bg-black/70 px-2.5 py-1 text-xs font-semibold text-white/85 backdrop-blur-sm transition-colors duration-200 group-hover:border-cyan-400/60 group-hover:text-cyan-300">
           Case study
           <ArrowUpRight size={14} />
         </span>
+      </div>
+
+      {/* Details side: all four KPIs in a 2x2 grid whose tiles stretch into the spare height.
+          Its content sets the card's minimum height, and the deck must stay no taller than
+          the bullet column (so the dots line up with the buttons): keep it compact. */}
+      <div className="flex min-w-0 flex-1 flex-col gap-2.5 p-4">
+        <div>
+          <h3 className="text-lg xl:text-xl font-bold leading-tight text-white">{project.title}</h3>
+          {project.subtitle && (
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-cyan-300/80">{project.subtitle}</p>
+          )}
+          <p className="mt-1 line-clamp-2 text-xs 2xl:text-sm leading-snug text-gray-300">{project.tagline}</p>
+        </div>
+
+        <div className="grid flex-1 grid-cols-2 gap-2">
+          {project.kpis.map(({ value, label }) => (
+            <div key={label} className="flex min-w-0 flex-col justify-center rounded-lg border border-white/10 bg-white/5 px-3 py-1.5">
+              <span className="whitespace-nowrap text-xl 2xl:text-2xl font-extrabold leading-tight text-cyan-300">{value}</span>
+              <span className="text-[11px] 2xl:text-xs leading-tight text-gray-400">{label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </Link>
   )

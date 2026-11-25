@@ -16,6 +16,9 @@ export const projectGroups = [
   'Misc',
 ]
 
+// `demo` (optional) is a live app's URL: the card shows a "Live demo" button, linked
+// through /go/demo/<slug> like the GitHub button.
+//
 // Case-study fields, all optional: the card leaves out any section with nothing in it.
 //   problem      one or two sentences
 //   howItWorks   array of steps (a string still renders, as a paragraph)
@@ -26,13 +29,75 @@ export const projectGroups = [
 //   inDevelopment, statusNote   shows "In development" in the Result section
 export const projects = [
   {
+    title: 'Property Intelligence Chatbot',
+    description:
+      'An agentic RAG chatbot that answers natural-language questions about DarGlobal projects and Wasalt (Saudi Arabia) property listings, grounded in scraped public data, with a source link for every answer.',
+    image: '/projects/property-intelligence-chatbot/cover.png',
+    github: 'https://github.com/AndrewRaj0510/Property_Intelligence_Chatbot',
+    demo: 'https://property-intelligence-chatbot.onrender.com',
+    visibility: 'public',
+    deployed: true,
+    group: 'Featured',
+    problem:
+      'Questions about DarGlobal projects and Wasalt listings need exact, sourced answers from scattered public pages, and a chatbot must never guess a price or invent a link.',
+    overview: [
+      'An agentic RAG chatbot for DarGlobal projects, the company and its news, and Wasalt (Saudi Arabia) property listings.',
+      'Every answer is grounded in scraped public data and comes with a source link.',
+      'Refuses off-topic questions, advice and attacks, and says so when a fact is not in the data.',
+      'Complete and deployed on free tiers, with no infrastructure cost.',
+    ],
+    howItWorks: [
+      'Scrape: public pages, refreshed every 3 days.',
+      'Guard: code blocks attacks first.',
+      'Agent: LangGraph with six typed tools.',
+      'Tools: SQLite for lists, Qdrant for meaning.',
+      'Finalize: code checks numbers and links.',
+    ],
+    tradeoffs: [
+      { choice: 'One agent, not many', detail: 'Fewer slow, rate-limited LLM calls.' },
+      { choice: 'SQL for lists', detail: 'Search returned 7 of 13 Oman projects.' },
+      { choice: 'Reasoning only for tool picks', detail: 'Faster, with no skipped tools.' },
+    ],
+    issues: [
+      { issue: 'Answers took up to 142 s.', fix: 'Parallel tools, timeouts and caches cut p95 to 11.3 s.' },
+      { issue: 'Wasalt pages are bot-protected.', fix: 'Not bypassed; missing fields are stated.' },
+      { issue: 'One bad number discarded a whole answer.', fix: 'Now only that sentence goes.' },
+    ],
+    results: [
+      { value: '36/36', label: 'test questions answered correctly' },
+      { value: '8/8', label: 'correct refusals' },
+      { value: '5.2 s', label: 'median answer time' },
+      { value: '$0', label: 'infrastructure cost' },
+    ],
+    whatWorked: [
+      'Blocking attacks in code before the LLM: consistent, testable and free.',
+      'Grading in code instead of an LLM judge, which saves free-tier quota.',
+      'BM25 on brand and place names, with a keyword Hit@5 of 0.95.',
+    ],
+    whatDidNot: [
+      'Semantic and hybrid retrieval could not be scored: the free embedding model was overloaded.',
+      'Wasalt prices, cities and descriptions are not in the data.',
+      'Free models are sometimes busy, and p95 answer time is 11.3 s.',
+    ],
+    stack: ['Python 3.11', 'LangGraph', 'OpenRouter', 'NVIDIA Nemotron', 'Qdrant Cloud', 'SQLite', 'BM25', 'Streamlit', 'Langfuse', 'httpx', 'selectolax', 'BeautifulSoup', 'Docker', 'Render', 'GitHub Actions'],
+    gallery: [
+      '/projects/property-intelligence-chatbot/1.png',
+      '/projects/property-intelligence-chatbot/2.png',
+      '/projects/property-intelligence-chatbot/3.png',
+      '/projects/property-intelligence-chatbot/4.png',
+      '/projects/property-intelligence-chatbot/5.png',
+      '/projects/property-intelligence-chatbot/6.png',
+      '/projects/property-intelligence-chatbot/7.png',
+    ],
+  },
+  {
     title: 'Content Creation Agent',
     description:
       'An AI content-automation platform for an eCommerce media brand that fetches and scores industry news, then drafts, illustrates, and publishes social posts through a review-and-approve dashboard.',
     image: '/projects/content-creation-agent/cover.png',
     visibility: 'private',
     deployed: true,
-    group: 'Featured',
+    group: 'AI Agents and Apps',
     problem:
       'An eCommerce media brand has to turn a constant flow of industry news into LinkedIn and Instagram posts, and by hand that means reading, writing and designing every one.',
     overview: [
@@ -290,7 +355,7 @@ export const projects = [
     title: 'Property Investment Intelligence',
     description:
       'An MSc dissertation project that predicts and explains the gross rental yield of Dubai properties and turns a pasted Bayut or Dubizzle listing into an invest-or-avoid verdict, using real Dubai Land Department sales and Ejari rent data.',
-    image: null,
+    image: '/projects/property-investment-intelligence/cover.png',
     github: 'https://github.com/AndrewRaj0510/Property_Investment_Intelligence',
     visibility: 'public',
     group: 'Data and ML',
@@ -337,7 +402,12 @@ export const projects = [
       'The served model still includes the leaking features.',
     ],
     stack: ['Python', 'FastAPI', 'XGBoost', 'LightGBM', 'SHAP', 'LangChain', 'OpenAI (GPT-5)', 'Supabase PostgreSQL', 'Apify', 'Next.js 14', 'TypeScript'],
-    gallery: [],
+    gallery: [
+      '/projects/property-investment-intelligence/1.png',
+      '/projects/property-investment-intelligence/2.png',
+      '/projects/property-investment-intelligence/3.png',
+      '/projects/property-investment-intelligence/4.png',
+    ],
   },
   {
     title: 'Stock Predictor',
